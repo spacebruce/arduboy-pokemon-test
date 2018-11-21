@@ -10,16 +10,27 @@ void StateBattle::DrawHealthBar(uint8_t percentage, uint8_t x, uint8_t y)
 	const uint8_t BorderSize = 2;
 	const uint8_t Width = 50;
 	const uint8_t Height = 2;
+	
 	arduboy.drawRect(x, y, Width + (BorderSize * 2), Height + (BorderSize * 2), BLACK);
-	arduboy.fillRect(x + BorderSize, y + BorderSize, percentage, Height, BLACK);
+	arduboy.fillRect(x + BorderSize, y + BorderSize, percentage / 2, Height, BLACK);
 }
 
 void StateBattle::Draw()
 {
-	arduboy.setCursor(5,2);
+	//enemy hp bar
+	arduboy.setCursor(2,1);
 	arduboy.print(F("namehere1"));
-	//arduboy.print(F(" HP 45/120"));
-	DrawHealthBar(50, 5, 9);
+	DrawHealthBar(50, 2, 9);
+	
+	//player hp bar
+	arduboy.setCursor(72, 29);
+	arduboy.print(F("namehere1"));
+	DrawHealthBar(5, 72, 37);
+	
+	arduboy.fillRect(1, 44, 126, 20, BLACK);
+	arduboy.drawRect(1, 44, 126, 20, WHITE);
+}
+
 void StateBattle::BattleUI()
 {
 	const uint8_t xstart = 4;
