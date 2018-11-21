@@ -37,7 +37,7 @@ void StateBattle::BattleUI()
 	const uint8_t ystart = 46;
 	
 	arduboy.setCursor(xstart, ystart);
-	arduboy.print(stringBattleMenuAction);
+	arduboy.print(asFlashString(pgm_read_ptr(&stringBattleMenu[static_cast<uint8_t>(menuOn)])));
 }
 
 GameStateID StateBattle::Run()
@@ -52,7 +52,7 @@ GameStateID StateBattle::Run()
 			phase = BattlePhase::Select;
 		break;
 		case BattlePhase::Select:
-			textbox.print(F("!!!"));
+			//textbox.print(F("!!!"));
 			BattleUI();
 		break;
 		case BattlePhase::Attack1:
