@@ -20,6 +20,13 @@ void StateBattle::Draw()
 	arduboy.print(F("namehere1"));
 	//arduboy.print(F(" HP 45/120"));
 	DrawHealthBar(50, 5, 9);
+void StateBattle::BattleUI()
+{
+	const uint8_t xstart = 4;
+	const uint8_t ystart = 46;
+	
+	arduboy.setCursor(xstart, ystart);
+	arduboy.print(stringBattleMenuAction);
 }
 
 GameStateID StateBattle::Run()
@@ -34,7 +41,8 @@ GameStateID StateBattle::Run()
 			phase = BattlePhase::Select;
 		break;
 		case BattlePhase::Select:
-			
+			textbox.print(F("!!!"));
+			BattleUI();
 		break;
 		case BattlePhase::Attack1:
 		break;
@@ -45,5 +53,6 @@ GameStateID StateBattle::Run()
 		case BattlePhase::Defeat:
 		break;
 	}
+	
 	return GameStateID::Battle;
 }

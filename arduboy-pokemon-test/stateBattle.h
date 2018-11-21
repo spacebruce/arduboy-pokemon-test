@@ -12,6 +12,8 @@ class StateBattle : public StateBase
 private:
 	uint8_t transition = 0;
 	
+	void BattleUI();
+	
 	void DrawHealthBar(uint8_t percentage, uint8_t x, uint8_t y);
 	void Draw();
 	BattlePhase phase = BattlePhase::Intro;
