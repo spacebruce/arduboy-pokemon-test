@@ -5,6 +5,7 @@
 #include "states.h"
 #include "stateBase.h"
 
+#include "assets/sprites.h"
 #include "battleDefines.h"
 
 class StateBattle : public StateBase
@@ -12,6 +13,7 @@ class StateBattle : public StateBase
 private:
 	uint8_t transition = 0;
 	BattleMenu menuOn = BattleMenu::Action;
+	uint8_t select = 0;
 	
 	void BattleUI();
 	

@@ -21,8 +21,7 @@ enum class BattleMenu : uint8_t
 const PROGMEM char stringBattleMenuAction[] = "Action?";
 const PROGMEM char stringBattleMenuFight[] = "Fight!";
 const PROGMEM char stringBattleMenuRun[] = "Run?";
-
-const PROGMEM FlashString stringBattleMenu[] = 
+const PROGMEM FlashString stringBattleTitle[] = 
 {
 	asFlashString(stringBattleMenuAction), 
 	asFlashString(stringBattleMenuFight), 
@@ -33,6 +32,13 @@ const PROGMEM char stringBattleFight[] = "Fight";
 const PROGMEM char stringBattleParty[] = "Party";
 const PROGMEM char stringBattleItems[] = "Bag";
 const PROGMEM char stringBattleRunny[] = "Run!";	
+const PROGMEM FlashString stringBattleAction[] = 
+{
+	asFlashString(stringBattleFight), 
+	asFlashString(stringBattleParty), 
+	asFlashString(stringBattleItems),
+	asFlashString(stringBattleRunny),
+};
 
 enum class ElementType : uint8_t
 {

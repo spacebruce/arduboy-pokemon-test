@@ -37,7 +37,16 @@ void StateBattle::BattleUI()
 	const uint8_t ystart = 46;
 	
 	arduboy.setCursor(xstart, ystart);
-	arduboy.print(asFlashString(pgm_read_ptr(&stringBattleMenu[static_cast<uint8_t>(menuOn)])));
+	arduboy.print(asFlashString(pgm_read_ptr(&stringBattleTitle[static_cast<uint8_t>(menuOn)])));
+	
+	static const int8_t menuX[4] = { 54, 94, 54, 94 };
+	static const int8_t menuY[4] = { ystart, ystart, ystart + 8, ystart + 8 };
+	for(uint8_t i = 0; i < 4; ++i)
+	{
+		arduboy.setCursor(menuX[i], menuY[i]);
+		arduboy.print(asFlashString(pgm_read_ptr(&stringBattleAction[static_cast<uint8_t>(i)])));
+	}
+	Sprites::drawOverwrite(menuX[select] - 6, menuY[select], Sprite::UIArrow, 0);
 }
 
 GameStateID StateBattle::Run()
