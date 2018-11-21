@@ -120,7 +120,8 @@ void StateOverWorld::Draw()
 		
 		arduboy.fillRect(WIDTH - MenuWidth, MenuY, MenuWidth, MenuHeight, BLACK);
 		arduboy.drawRect(WIDTH - MenuWidth, MenuY, MenuWidth, MenuHeight, WHITE);
-		arduboy.drawBitmap((WIDTH - MenuWidth) + 2, y + (Selected * 8), Sprite::UIArrow, 5, 8, WHITE);
+		Sprites::drawOverwrite((WIDTH - MenuWidth) + 2, y + (Selected * 8), Sprite::UIArrow, 0);
+		//arduboy.drawBitmap((WIDTH - MenuWidth) + 2, y + (Selected * 8), Sprite::UIArrow, 5, 8, WHITE);
 		
 		for (auto i = menu.getFirstIndex(); i < menu.getEndIndex(); ++i)
 		{
