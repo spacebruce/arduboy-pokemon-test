@@ -4,6 +4,7 @@
 
 #include "npc.h"
 #include "player.h"
+#include "tileType.h"
 
 #include "assets/sprites.h"
 #include "assets/tiles.h"
@@ -23,7 +24,7 @@ private:
 	bool npcVisible(uint8_t index);
 	
 	//World and tiles
-	char * tileLookupSprite(uint8_t tx, uint8_t ty);
+	TileType tileLookupSprite(uint8_t tx, uint8_t ty);
 	
 public:
 	Player player;

@@ -6,14 +6,15 @@ void World::setCamera(const int16_t cameraX, const int16_t cameraY)
 	this->cameraY = min(ChunkHeight - HEIGHT, max(0, cameraY));
 }
 
-char * World::tileLookupSprite(uint8_t tx, uint8_t ty)
+TileType World::tileLookupSprite(uint8_t tx, uint8_t ty)
 {
 	uint8_t chunkx = tx / ChunkWidth;
 	uint8_t chunky = ty / ChunkHeight;
-	if(tx & 1)
-		return Tiles::Blank;
+
+	if((tx & 1) != 0)
+		return TileType::Blank;
 	else
-		return Tiles::Post;
+		return TileType::Post;
 }
 
 bool World::npcVisible(uint8_t index)
@@ -41,9 +42,11 @@ void World::drawWorld()
 		int16_t dx = offsetX + (tileLeft * TileWidth);
 		for(auto ix = tileLeft; ix < tileRight; ++ix)
 		{
-			auto tile = tileLookupSprite(ix, iy);
+			auto tileType = tileLookupSprite(ix, iy);
+
+			Sprites::drawOverwrite(dx, dy, Tiles, static_cast<uint8_t>(tileType));
 			
-			arduboy.drawBitmap(dx, dy, tile, TileWidth, TileHeight, WHITE);
+			//arduboy.drawBitmap(dx, dy, tile, TileWidth, TileHeight, WHITE);
 			//arduboy.drawBitmap(offsetX + (ix * TileWidth), offsetY + (iy * TileHeight), tile, TileWidth, TileHeight, WHITE);	//more progmem hungry method and probably slower too
 			
 			dx += TileWidth;
@@ -78,5 +81,6 @@ void World::drawStuff()
 	
 	//player
 	arduboy.fillRect(context.world.playerX + offsetX, context.world.playerY + offsetY, TileWidth, TileHeight, WHITE);
-	arduboy.drawBitmap(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
+	Sprites::drawOverwrite(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, 0);
+	//arduboy.drawBitmap(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
 }
