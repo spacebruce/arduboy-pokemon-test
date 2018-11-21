@@ -41,10 +41,25 @@ void StateBattle::BattleUI()
 	
 	static const int8_t menuX[4] = { 54, 94, 54, 94 };
 	static const int8_t menuY[4] = { ystart, ystart, ystart + 8, ystart + 8 };
-	for(uint8_t i = 0; i < 4; ++i)
+	
+	uint8_t menuSize = 4;
+	if(menuOn == BattleMenu::Fight)	menuSize = 2;	// number of moves available
+	if(menuOn == BattleMenu::Run)	menuSize = 2;	// yes / no
+	for(uint8_t i = 0; i < menuSize; ++i)
 	{
 		arduboy.setCursor(menuX[i], menuY[i]);
-		arduboy.print(asFlashString(pgm_read_ptr(&stringBattleAction[static_cast<uint8_t>(i)])));
+		switch(menuOn)
+		{
+			case BattleMenu::Action:
+				arduboy.print(asFlashString(pgm_read_ptr(&stringBattleAction[static_cast<uint8_t>(i)])));
+			break;
+			case BattleMenu::Fight:
+				arduboy.print(asFlashString(pgm_read_ptr(&stringBattleAction[static_cast<uint8_t>(i)])));
+			break;
+			case BattleMenu::Run:
+				arduboy.print(asFlashString(pgm_read_ptr(&stringBattleRun[static_cast<uint8_t>(i)])));
+			break;
+		}
 	}
 	Sprites::drawOverwrite(menuX[select] - 6, menuY[select], Sprite::UIArrow, 0);
 }
@@ -61,7 +76,6 @@ GameStateID StateBattle::Run()
 			phase = BattlePhase::Select;
 		break;
 		case BattlePhase::Select:
-			//textbox.print(F("!!!"));
 			BattleUI();
 		break;
 		case BattlePhase::Attack1:
