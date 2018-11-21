@@ -41,11 +41,16 @@ const PROGMEM FlashString stringBattleAction[] =
 };
 
 enum class ElementType : uint8_t
+const PROGMEM char stringBattleRunYes[] = "Yes";
+const PROGMEM char stringBattleRunNo[] = "No";	
+const PROGMEM FlashString stringBattleRun[] = 
 {
 	Normal,
 	Fire,
 	Water,
 	Grass,
+	asFlashString(stringBattleRunYes), 
+	asFlashString(stringBattleRunNo), 
 };
 
 struct AttackType
