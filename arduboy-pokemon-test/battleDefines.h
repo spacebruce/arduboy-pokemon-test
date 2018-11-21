@@ -2,6 +2,16 @@
 #include <avr/pgmspace.h>
 #include "utilities/FlashString.h"
 
+enum class BattlePhase : uint8_t
+{
+	Intro,
+	Select,
+	Attack1,
+	Attack2,
+	Victory,
+	Defeat,
+};
+
 enum class ElementType : uint8_t
 {
 	Normal,

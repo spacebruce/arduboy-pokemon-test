@@ -7,16 +7,6 @@
 
 #include "battleDefines.h"
 
-enum class BattlePhase : uint8_t
-{
-	Intro,
-	Select,
-	Attack1,
-	Attack2,
-	Victory,
-	Defeat,
-};
-
 class StateBattle : public StateBase
 {
 private:
