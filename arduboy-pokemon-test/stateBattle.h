@@ -11,6 +11,7 @@ class StateBattle : public StateBase
 {
 private:
 	uint8_t transition = 0;
+	BattleMenu menuOn = BattleMenu::Action;
 	
 	void BattleUI();
 	

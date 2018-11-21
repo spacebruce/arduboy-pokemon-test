@@ -12,14 +12,27 @@ enum class BattlePhase : uint8_t
 	Defeat,
 };
 
-const PROGMEM char stringBattleFight[] = "Fight";
-const PROGMEM char stringBattleParty[] = "Party";
-const PROGMEM char stringBattleItems[] = "Items";
-const PROGMEM char stringBattleRunny[] = "Run!";	
-
+enum class BattleMenu : uint8_t
+{
+	Action,	//main picker
+	Fight,	//move
+	Run,	//run away
+};
 const PROGMEM char stringBattleMenuAction[] = "Action?";
 const PROGMEM char stringBattleMenuFight[] = "Fight!";
 const PROGMEM char stringBattleMenuRun[] = "Run?";
+
+const PROGMEM FlashString stringBattleMenu[] = 
+{
+	asFlashString(stringBattleMenuAction), 
+	asFlashString(stringBattleMenuFight), 
+	asFlashString(stringBattleMenuRun),
+};
+
+const PROGMEM char stringBattleFight[] = "Fight";
+const PROGMEM char stringBattleParty[] = "Party";
+const PROGMEM char stringBattleItems[] = "Bag";
+const PROGMEM char stringBattleRunny[] = "Run!";	
 
 enum class ElementType : uint8_t
 {
