@@ -1,0 +1,32 @@
+#pragma once
+#include <Arduboy2.h>
+#include "context.h"
+#include "textbox.h"
+#include "states.h"
+#include "stateBase.h"
+#include "utilities/ArrayUtils.h"
+
+#include "assets/sprites.h"
+
+#include "worldEnums.h"
+#include "world.h"
+#include "menuDefines.h"
+#include "menu.h"
+
+class StateOverWorld : public StateBase
+{
+public:
+	StateOverWorld(Arduboy2 & arduboy, Textbox & textbox, GameContext & context);
+private:
+
+	bool menuShow = false;
+	
+	Menu menu = Menu(PauseMenuItems);
+	World world = World(arduboy, context);
+	
+	GameStateID Tick();
+	void Draw();
+public:
+	GameStateID Run();
+	
+};
