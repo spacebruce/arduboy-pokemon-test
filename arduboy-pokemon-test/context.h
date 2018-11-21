@@ -10,7 +10,7 @@
 class GameContext
 {
 private:
-	const char magicName[] = "BUTT";
+	const char magicName[4] = "BUTT";
 public:
 	ContextWorld world;
 	ContextStats stats;
@@ -18,9 +18,15 @@ public:
 	bool LoadValid()
 	{
 		size_t address = EEPROM_STORAGE_SPACE_START;
+
 		char check[4];
 		eeprom_read_block(check, address, sizeof(magicName));
-		return (strcmp(check, magicName));
+
+		for(uint8_t i = 0; i < 4; ++i)
+			if(check[i] != magicName[i])
+				return false;
+
+		return true;
 	}
 	
 	bool Load()
