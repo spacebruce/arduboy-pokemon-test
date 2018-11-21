@@ -46,7 +46,8 @@ GameStateID StateMenu::Run()
 	arduboy.fillScreen(BLACK);
 	
 	arduboy.drawRect(0, HEIGHT - 20, 66, 19, WHITE);
-	arduboy.drawBitmap(2, drawY + (Selected * 8), Sprite::UIArrow, 5, 8, WHITE);
+	Sprites::drawOverwrite(2, drawY + (Selected * 8), Sprite::UIArrow, 0);
+	//arduboy.drawBitmap(2, drawY + (Selected * 8), Sprite::UIArrow, 5, 8, WHITE);
 	
 	menu.print(arduboy, 10, drawY);
 	return state;

@@ -81,5 +81,6 @@ void World::drawStuff()
 	
 	//player
 	arduboy.fillRect(context.world.playerX + offsetX, context.world.playerY + offsetY, TileWidth, TileHeight, WHITE);
-	arduboy.drawBitmap(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
+	Sprites::drawOverwrite(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, 0);
+	//arduboy.drawBitmap(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
 }
