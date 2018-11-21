@@ -10,7 +10,9 @@
 class GameContext
 {
 private:
-	const char magicName[4] = "BUTT";
+	//"BUTT";
+	static constexpr uint32_t magicNumber = 0x42555454;
+
 public:
 	ContextWorld world;
 	ContextStats stats;
@@ -18,15 +20,7 @@ public:
 	bool LoadValid()
 	{
 		size_t address = EEPROM_STORAGE_SPACE_START;
-
-		char check[4];
-		eeprom_read_block(check, address, sizeof(magicName));
-
-		for(uint8_t i = 0; i < 4; ++i)
-			if(check[i] != magicName[i])
-				return false;
-
-		return true;
+		return (eeprom_read_dword(address) == magicNumber);
 	}
 	
 	bool Load()
@@ -36,8 +30,8 @@ public:
 
 		size_t address = EEPROM_STORAGE_SPACE_START;
 
-		eeprom_read_block(&world, address + sizeof(magicName), sizeof(world));
-		eeprom_read_block(&stats, address + sizeof(magicName) + sizeof(world), sizeof(stats));
+		eeprom_read_block(&world, address + sizeof(magicNumber), sizeof(world));
+		eeprom_read_block(&stats, address + sizeof(magicNumber) + sizeof(world), sizeof(stats));
 		
 		return true;
 	};
@@ -46,7 +40,7 @@ public:
 	{
 		size_t address = EEPROM_STORAGE_SPACE_START;
 		
-		eeprom_write_block(magicName, address, sizeof(magicName));	address += sizeof(magicName);
+		eeprom_write_dword(address, magicNumber);	address += sizeof(magicNumber);
 		
 		eeprom_write_block(&world, address, sizeof(ContextWorld));	address += sizeof(ContextWorld);
 		eeprom_write_block(&stats, address, sizeof(ContextStats));
