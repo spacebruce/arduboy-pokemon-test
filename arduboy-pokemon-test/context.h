@@ -10,39 +10,49 @@
 class GameContext
 {
 private:
-	const char magicName[] = "BUTT";
+	//"BUTT";
+	static constexpr uint32_t magicNumber = 0x42555454;
+
+public:
+	static constexpr uintptr_t StartAddress = EEPROM_STORAGE_SPACE_START;
+	static constexpr uintptr_t MagicNumberAddress = StartAddress;
+	static constexpr uintptr_t WorldAddress = MagicNumberAddress + sizeof(magicNumber);
+	static constexpr uintptr_t StatsAddress = WorldAddress + sizeof(ContextWorld);
+	static constexpr uintptr_t EndAddress = StatsAddress + sizeof(ContextStats);
+
 public:
 	ContextWorld world;
 	ContextStats stats;
 	
 	bool LoadValid()
 	{
-		size_t address = EEPROM_STORAGE_SPACE_START;
-		char check[4];
-		eeprom_read_block(check, address, sizeof(magicName));	address += sizeof(magicName);
-		return (strcmp(check, magicName));
+		const auto magicNumberAddress = reinterpret_cast<const uint32_t *>(MagicNumberAddress);
+		return (eeprom_read_dword(magicNumberAddress) == magicNumber);
 	}
 	
 	bool Load()
 	{
-		size_t address = EEPROM_STORAGE_SPACE_START;
-		
 		if(!LoadValid())
 			return false;
-		
-		eeprom_read_block(&world, address, sizeof(world));	address += sizeof(world);
-		eeprom_read_block(&stats, address, sizeof(stats));
+
+		const auto worldAddress = reinterpret_cast<const ContextWorld *>(WorldAddress);
+		eeprom_read_block(&world, worldAddress, sizeof(world));
+
+		const auto statsAddress = reinterpret_cast<const ContextStats *>(StatsAddress);
+		eeprom_read_block(&stats, statsAddress, sizeof(stats));
 		
 		return true;
 	};
 	
 	void Save()
 	{
-		size_t address = EEPROM_STORAGE_SPACE_START;
+		const auto magicNumberAddress = reinterpret_cast<const uint32_t *>(MagicNumberAddress);
+		eeprom_write_dword(magicNumberAddress, magicNumber);
 		
-		eeprom_write_block(magicName, address, sizeof(magicName));	address += sizeof(magicName);
-		
-		eeprom_write_block(&world, address, sizeof(ContextWorld));	address += sizeof(ContextWorld);
-		eeprom_write_block(&stats, address, sizeof(ContextStats));
+		const auto worldAddress = reinterpret_cast<const ContextWorld *>(WorldAddress);
+		eeprom_write_block(&world, worldAddress, sizeof(ContextWorld));
+
+		const auto statsAddress = reinterpret_cast<const ContextStats *>(StatsAddress);
+		eeprom_write_block(&stats, statsAddress, sizeof(ContextStats));
 	};
 };
