@@ -88,7 +88,7 @@ const MenuItem BattleMenuRunItems[] PROGMEM =
 	MenuItem(asFlashString(StringNo), MenuReturn::No),
 };
 
-const MenuItem BattleMenuFight[] PROGMEM =
+const MenuItem BattleMenuFightItems[] PROGMEM =
 {
 	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
 	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
