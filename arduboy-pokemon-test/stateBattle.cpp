@@ -56,7 +56,15 @@ GameStateID StateBattle::BattleUI()
 		if((select == 0) || (select == 2))
 			select += 1;
 	}
-	menuCurrent->selectIndex(select);
+	
+	if(select < menuSize)
+	{
+		menuCurrent->selectIndex(select);
+	}
+	else
+	{
+		select = menuCurrent->getSelectedIndex();
+	}
 	
 	if(arduboy.justPressed(A_BUTTON))
 	{
