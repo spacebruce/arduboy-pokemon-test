@@ -58,7 +58,36 @@ GameStateID StateBattle::BattleUI()
 	}
 	menuCurrent->selectIndex(select);
 	
+	if(arduboy.justPressed(A_BUTTON))
+	{
+		switch(menuCurrent->getCurrentValue())
+		{
+			case MenuReturn::BattleMenuFight:
+				textbox.print(F("Not yet..."));
+			break;			
+			case MenuReturn::BattleMenuParty:
+				textbox.print(F("Not yet..."));
+			break;
+			case MenuReturn::BattleMenuBaggy:
+				textbox.print(F("Not yet..."));
+			break;
+			case MenuReturn::BattleMenuRunny:
+				menuOn = BattleMenu::Run;
+			break;
+			case MenuReturn::Yes:	//run?
+				return(GameStateID::OverWorld);	//do this more gracefully...
+			break;
+			case MenuReturn::No:
+				menuOn = BattleMenu::Action;
+			break;
+		}
+		
+	}
+	
 	//draw
+	arduboy.setCursor(0,0);
+	arduboy.print(static_cast<uint8_t>(menuOn));
+	
 	const uint8_t xstart = 4;
 	const uint8_t ystart = 46;
 	
@@ -68,13 +97,10 @@ GameStateID StateBattle::BattleUI()
 	static const int8_t menuX[4] = { 54, 94, 54, 94 };
 	static const int8_t menuY[4] = { ystart, ystart, ystart + 8, ystart + 8 };
 
-	if(menuOn != BattleMenu::Fight)
+	for(uint8_t i = 0; i < menuSize; ++i)
 	{
-		for(uint8_t i = 0; i < menuSize; ++i)
-		{
-			arduboy.setCursor(menuX[i], menuY[i]);
-			arduboy.print(menuCurrent->getString(i));
-		}
+		arduboy.setCursor(menuX[i], menuY[i]);
+		arduboy.print(menuCurrent->getString(i));
 	}
 	Sprites::drawOverwrite(menuX[select] - 6, menuY[select], Sprite::UIArrow, 0);
 	
@@ -83,6 +109,7 @@ GameStateID StateBattle::BattleUI()
 
 GameStateID StateBattle::Run()
 {
+	GameStateID state = GameStateID::Battle;
 	arduboy.fillScreen(WHITE);
 	Draw();
 	
@@ -93,7 +120,7 @@ GameStateID StateBattle::Run()
 			phase = BattlePhase::Select;
 		break;
 		case BattlePhase::Select:
-			BattleUI();
+			state = BattleUI();
 		break;
 		case BattlePhase::Attack1:
 		break;
@@ -105,5 +132,5 @@ GameStateID StateBattle::Run()
 		break;
 	}
 	
-	return GameStateID::Battle;
+	return state;
 }
