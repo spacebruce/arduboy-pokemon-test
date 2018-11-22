@@ -22,7 +22,7 @@ private:
 		Menu(BattleMenuRunItems),
 	};
 	
-	void BattleUI();
+	GameStateID BattleUI();
 	
 	void DrawHealthBar(uint8_t percentage, uint8_t x, uint8_t y);
 	void Draw();

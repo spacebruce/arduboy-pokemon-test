@@ -31,7 +31,7 @@ void StateBattle::Draw()
 	arduboy.drawRect(1, 44, 126, 20, WHITE);
 }
 
-void StateBattle::BattleUI()
+GameStateID StateBattle::BattleUI()
 {	
 	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
 	const uint8_t menuSize = menuCurrent->getEndIndex();
@@ -77,6 +77,8 @@ void StateBattle::BattleUI()
 		}
 	}
 	Sprites::drawOverwrite(menuX[select] - 6, menuY[select], Sprite::UIArrow, 0);
+	
+	return(GameStateID::Battle);	//do this more gracefully...
 }
 
 GameStateID StateBattle::Run()
