@@ -14,9 +14,9 @@ enum class BattlePhase : uint8_t
 
 enum class BattleMenu : uint8_t
 {
-	Action,	//main picker
-	Fight,	//move
-	Run,	//run away
+	Action = 0,	//main picker
+	Fight = 1,	//move
+	Run = 2,	//run away
 };
 
 const PROGMEM char stringBattleMenuAction[] = "Action?";

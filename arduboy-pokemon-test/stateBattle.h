@@ -18,8 +18,8 @@ private:
 	Menu menu[3] = 
 	{
 		Menu(BattleMenuMainItems),
-		Menu(BattleMenuRunItems),
 		Menu(BattleMenuFightItems),
+		Menu(BattleMenuRunItems),
 	};
 	
 	void BattleUI();
