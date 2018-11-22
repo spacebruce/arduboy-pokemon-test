@@ -5,6 +5,9 @@
 enum class MenuReturn : uint8_t
 {
 	Null,
+	//Generic
+	Yes,
+	No,
 	//Main
 	MainNewGame,
 	MainLoadGame,
@@ -16,6 +19,12 @@ enum class MenuReturn : uint8_t
 	PauseMenuSave,
 	PauseMenuOptions,
 	PauseMenuTestBattle,
+	//Battle
+	BattleMenuFight,
+	BattleMenuParty,
+	BattleMenuBaggy,
+	BattleMenuRunny,
+	BattleMenuAttackSelect,
 };
 
 struct MenuItem
@@ -24,6 +33,10 @@ struct MenuItem
 	MenuReturn result;
 	constexpr MenuItem(FlashString string, MenuReturn result) : string(string), result(result)	{}
 };
+
+const PROGMEM char StringEmpty[] = "";
+const PROGMEM char StringYes[] = "Yes";
+const PROGMEM char StringNo[] = "No";
 
 //main menu
 const char StringMainMenuStart[] PROGMEM = "New Game";
@@ -39,7 +52,6 @@ const MenuItem MainMenuItems[] PROGMEM =
 const uint8_t PauseMenuPlayerIndex = 1;
 
 const char StringPauseMenuMonsters[] PROGMEM = "Monsters";
-const char StringPauseMenuPlayer[] PROGMEM = "";
 const char StringPauseMenuItems[] PROGMEM = "Bag";
 const char StringPauseMenuMap[] PROGMEM = "Map";
 const char StringPauseMenuSave[] PROGMEM = "Save";
@@ -49,10 +61,37 @@ const char StringPauseMenuTestBattle[] PROGMEM = "BatlTest";
 const MenuItem PauseMenuItems[] PROGMEM =
 {
 	MenuItem(asFlashString(StringPauseMenuMonsters), MenuReturn::PauseMenuMonsters),
-	MenuItem(asFlashString(StringPauseMenuPlayer), MenuReturn::PauseMenuPlayer),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::PauseMenuPlayer),
 	MenuItem(asFlashString(StringPauseMenuItems), MenuReturn::PauseMenuItems),
 	MenuItem(asFlashString(StringPauseMenuMap), MenuReturn::PauseMenuMap),
 	MenuItem(asFlashString(StringPauseMenuSave), MenuReturn::PauseMenuSave),
 	MenuItem(asFlashString(StringPauseMenuOptions), MenuReturn::PauseMenuOptions),
 	MenuItem(asFlashString(StringPauseMenuTestBattle), MenuReturn::PauseMenuTestBattle),
+};
+
+//battle menu
+const PROGMEM char StringBattleMenuFight[] = "Fight";	
+const PROGMEM char StringBattleMenuParty[] = "Party";
+const PROGMEM char StringBattleMenuItems[] = "Bag";
+const PROGMEM char StringBattleMenuRunny[] = "Run!";	
+const MenuItem BattleMenuMainItems[] PROGMEM =
+{
+	MenuItem(asFlashString(StringBattleMenuFight), MenuReturn::BattleMenuFight),
+	MenuItem(asFlashString(StringBattleMenuParty), MenuReturn::BattleMenuParty),
+	MenuItem(asFlashString(StringBattleMenuItems), MenuReturn::BattleMenuBaggy),
+	MenuItem(asFlashString(StringBattleMenuRunny), MenuReturn::BattleMenuRunny),
+};
+
+const MenuItem BattleMenuRunItems[] PROGMEM =
+{
+	MenuItem(asFlashString(StringNo), MenuReturn::No),
+	MenuItem(asFlashString(StringYes), MenuReturn::Yes),
+};
+
+const MenuItem BattleMenuFightItems[] PROGMEM =
+{
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
 };

@@ -12,36 +12,19 @@ enum class BattlePhase : uint8_t
 	Defeat,
 };
 
-const PROGMEM char stringBattleFight[] = "Fight";
-const PROGMEM char stringBattleParty[] = "Party";
-const PROGMEM char stringBattleItems[] = "Items";
-const PROGMEM char stringBattleRunny[] = "Run!";	
+enum class BattleMenu : uint8_t
+{
+	Action = 0,	//main picker
+	Fight = 1,	//move
+	Run = 2,	//run away
+};
 
 const PROGMEM char stringBattleMenuAction[] = "Action?";
 const PROGMEM char stringBattleMenuFight[] = "Fight!";
 const PROGMEM char stringBattleMenuRun[] = "Run?";
-
-enum class ElementType : uint8_t
+const PROGMEM FlashString stringBattleTitle[] = 
 {
-	Normal,
-	Fire,
-	Water,
-	Grass,
-};
-
-struct AttackType
-{
-	FlashString label;	//label rather than name because name is a reserved arduino thing
-	ElementType type;
-	int8_t power;
-	constexpr AttackType(FlashString string, ElementType type, int8_t power) : label(string), type(type), power(power) {}
-};
-
-const PROGMEM char attackTest1[] = "punch";
-const PROGMEM char attackTest2[] = "flambe";
-
-const PROGMEM AttackType Attacks[] = 
-{
-	AttackType(asFlashString(attackTest1), ElementType::Normal, 10),
-	AttackType(asFlashString(attackTest2), ElementType::Fire, 15),
+	asFlashString(stringBattleMenuAction), 
+	asFlashString(stringBattleMenuFight), 
+	asFlashString(stringBattleMenuRun),
 };

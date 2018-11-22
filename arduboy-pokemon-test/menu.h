@@ -52,6 +52,11 @@ public:
 		return (this->selected < this->getLastIndex()) ? (this->selected + 1) : this->getFirstIndex();
 	}
 	
+	void selectIndex(const uint8_t selected)
+	{
+		this->selected = (selected < this->getLastIndex()) ? (selected) : this->getLastIndex();
+	}
+	
 	void selectFirstIndex()
 	{
 		this->selected = getFirstIndex();
@@ -68,7 +73,7 @@ public:
 	}
 	
 	// values
-	MenuReturn getValue(uint8_t index)
+	MenuReturn getValue(const uint8_t index)
 	{
 		return static_cast<MenuReturn>(pgm_read_byte(&items[index].result));
 	}
@@ -79,7 +84,7 @@ public:
 	}
 	
 	// strings
-	FlashString getString(int8_t index)
+	FlashString getString(const uint8_t index)
 	{
 		return asFlashString(pgm_read_ptr(&items[index].string));
 	}

@@ -5,14 +5,24 @@
 #include "states.h"
 #include "stateBase.h"
 
+#include "assets/sprites.h"
+#include "menuDefines.h"
+#include "menu.h"
 #include "battleDefines.h"
 
 class StateBattle : public StateBase
 {
 private:
 	uint8_t transition = 0;
+	BattleMenu menuOn = BattleMenu::Action;
+	Menu menu[3] = 
+	{
+		Menu(BattleMenuMainItems),
+		Menu(BattleMenuFightItems),
+		Menu(BattleMenuRunItems),
+	};
 	
-	void BattleUI();
+	GameStateID BattleUI();
 	
 	void DrawHealthBar(uint8_t percentage, uint8_t x, uint8_t y);
 	void Draw();
