@@ -34,6 +34,7 @@ struct MenuItem
 	constexpr MenuItem(FlashString string, MenuReturn result) : string(string), result(result)	{}
 };
 
+const PROGMEM char StringEmpty[] = "";
 const PROGMEM char StringYes[] = "Yes";
 const PROGMEM char StringNo[] = "No";
 
@@ -51,7 +52,6 @@ const MenuItem MainMenuItems[] PROGMEM =
 const uint8_t PauseMenuPlayerIndex = 1;
 
 const char StringPauseMenuMonsters[] PROGMEM = "Monsters";
-const char StringPauseMenuPlayer[] PROGMEM = "";
 const char StringPauseMenuItems[] PROGMEM = "Bag";
 const char StringPauseMenuMap[] PROGMEM = "Map";
 const char StringPauseMenuSave[] PROGMEM = "Save";
@@ -61,7 +61,7 @@ const char StringPauseMenuTestBattle[] PROGMEM = "BatlTest";
 const MenuItem PauseMenuItems[] PROGMEM =
 {
 	MenuItem(asFlashString(StringPauseMenuMonsters), MenuReturn::PauseMenuMonsters),
-	MenuItem(asFlashString(StringPauseMenuPlayer), MenuReturn::PauseMenuPlayer),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::PauseMenuPlayer),
 	MenuItem(asFlashString(StringPauseMenuItems), MenuReturn::PauseMenuItems),
 	MenuItem(asFlashString(StringPauseMenuMap), MenuReturn::PauseMenuMap),
 	MenuItem(asFlashString(StringPauseMenuSave), MenuReturn::PauseMenuSave),
@@ -86,4 +86,12 @@ const MenuItem BattleMenuRunItems[] PROGMEM =
 {
 	MenuItem(asFlashString(StringYes), MenuReturn::Yes),
 	MenuItem(asFlashString(StringNo), MenuReturn::No),
+};
+
+const MenuItem BattleMenuFight[] PROGMEM =
+{
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
 };
