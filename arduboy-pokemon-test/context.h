@@ -14,13 +14,20 @@ private:
 	static constexpr uint32_t magicNumber = 0x42555454;
 
 public:
+	static constexpr uintptr_t StartAddress = EEPROM_STORAGE_SPACE_START;
+	static constexpr uintptr_t MagicNumberAddress = StartAddress;
+	static constexpr uintptr_t WorldAddress = MagicNumberAddress + sizeof(magicNumber);
+	static constexpr uintptr_t StatsAddress = WorldAddress + sizeof(ContextWorld);
+	static constexpr uintptr_t EndAddress = StatsAddress + sizeof(ContextStats);
+
+public:
 	ContextWorld world;
 	ContextStats stats;
 	
 	bool LoadValid()
 	{
-		size_t address = EEPROM_STORAGE_SPACE_START;
-		return (eeprom_read_dword(address) == magicNumber);
+		const auto magicNumberAddress = reinterpret_cast<const uint32_t *>(MagicNumberAddress);
+		return (eeprom_read_dword(magicNumberAddress) == magicNumber);
 	}
 	
 	bool Load()
@@ -28,21 +35,24 @@ public:
 		if(!LoadValid())
 			return false;
 
-		size_t address = EEPROM_STORAGE_SPACE_START;
+		const auto worldAddress = reinterpret_cast<const ContextWorld *>(WorldAddress);
+		eeprom_read_block(&world, worldAddress, sizeof(world));
 
-		eeprom_read_block(&world, address + sizeof(magicNumber), sizeof(world));
-		eeprom_read_block(&stats, address + sizeof(magicNumber) + sizeof(world), sizeof(stats));
+		const auto statsAddress = reinterpret_cast<const ContextStats *>(StatsAddress);
+		eeprom_read_block(&stats, statsAddress, sizeof(stats));
 		
 		return true;
 	};
 	
 	void Save()
 	{
-		size_t address = EEPROM_STORAGE_SPACE_START;
+		const auto magicNumberAddress = reinterpret_cast<const uint32_t *>(MagicNumberAddress);
+		eeprom_write_dword(magicNumberAddress, magicNumber);
 		
-		eeprom_write_dword(address, magicNumber);	address += sizeof(magicNumber);
-		
-		eeprom_write_block(&world, address, sizeof(ContextWorld));	address += sizeof(ContextWorld);
-		eeprom_write_block(&stats, address, sizeof(ContextStats));
+		const auto worldAddress = reinterpret_cast<const ContextWorld *>(WorldAddress);
+		eeprom_write_block(&world, worldAddress, sizeof(ContextWorld));
+
+		const auto statsAddress = reinterpret_cast<const ContextStats *>(StatsAddress);
+		eeprom_write_block(&stats, statsAddress, sizeof(ContextStats));
 	};
 };
