@@ -32,7 +32,30 @@ void StateBattle::Draw()
 }
 
 void StateBattle::BattleUI()
-{
+{	
+	uint8_t menuSize = 4;
+	if(menuOn == BattleMenu::Fight)	menuSize = 2;	// number of moves available
+	if(menuOn == BattleMenu::Run)	menuSize = 2;	// yes / no
+	
+	if(arduboy.justPressed(DOWN_BUTTON))
+	{
+		if(select < 2)	select += 2;
+	}
+	if(arduboy.justPressed(UP_BUTTON))
+	{
+		if(select >= 2)	select -= 2;
+	}
+	if(arduboy.justPressed(LEFT_BUTTON))
+	{
+		if((select == 1) || (select == 3))
+			select -= 1;
+	}
+	if(arduboy.justPressed(RIGHT_BUTTON))
+	{
+		if((select == 0) || (select == 2))
+			select += 1;
+	}
+	
 	const uint8_t xstart = 4;
 	const uint8_t ystart = 46;
 	
@@ -41,10 +64,7 @@ void StateBattle::BattleUI()
 	
 	static const int8_t menuX[4] = { 54, 94, 54, 94 };
 	static const int8_t menuY[4] = { ystart, ystart, ystart + 8, ystart + 8 };
-	
-	uint8_t menuSize = 4;
-	if(menuOn == BattleMenu::Fight)	menuSize = 2;	// number of moves available
-	if(menuOn == BattleMenu::Run)	menuSize = 2;	// yes / no
+
 	for(uint8_t i = 0; i < menuSize; ++i)
 	{
 		arduboy.setCursor(menuX[i], menuY[i]);
