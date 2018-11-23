@@ -1,7 +1,5 @@
 #pragma once
 
-#include "direction.h"
-
 const uint8_t MaxNPC = 16;
 
 const int16_t TileWidth = 16;
