@@ -48,7 +48,7 @@ void Game::Run()
 	
 	arduboy.pollButtons();
 	
-	if(textbox.busy())
+	if(textbox.isActive())
 	{
 		textbox.update(arduboy);
 		textbox.draw(arduboy);

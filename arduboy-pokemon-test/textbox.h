@@ -12,7 +12,7 @@ private:
 	uint8_t cursor = 0;
 	uint8_t reveal = 0;
 public:
-	bool busy() const
+	bool isActive() const
 	{
 		return active;
 	}
