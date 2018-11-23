@@ -3,7 +3,7 @@
 class Textbox : public Print
 {
 private:
-	constexpr static const uint8_t RowLength = 21;
+	constexpr static const uint8_t RowLength = 20;
 	constexpr static const uint8_t RowCount  = 2;
 	constexpr static const uint8_t CharMax = RowLength * RowCount;
 	
