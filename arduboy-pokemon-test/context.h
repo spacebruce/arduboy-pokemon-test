@@ -1,7 +1,7 @@
 #pragma once
 
 #include <avr/eeprom.h>
-#include "worldEnums.h"
+#include "worldDefines.h"
 #include "contextWorld.h"
 #include "contextStats.h"
 

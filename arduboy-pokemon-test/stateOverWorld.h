@@ -8,7 +8,7 @@
 
 #include "assets/sprites.h"
 
-#include "worldEnums.h"
+#include "worldDefines.h"
 #include "world.h"
 #include "menuDefines.h"
 #include "menu.h"

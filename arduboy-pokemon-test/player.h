@@ -1,6 +1,6 @@
 #pragma once
 
-#include "worldEnums.h"
+#include "worldDefines.h"
 
 class Player
 {
