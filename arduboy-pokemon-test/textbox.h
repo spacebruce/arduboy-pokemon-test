@@ -77,9 +77,6 @@ public:
 
 	void update(Arduboy2 & arduboy)
 	{
-		if(!this->active)
-			return;
-
 		if(this->reveal < this->cursor)
 		{
 			this->reveal++;
