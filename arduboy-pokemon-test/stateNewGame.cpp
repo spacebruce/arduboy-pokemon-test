@@ -71,7 +71,7 @@ GameStateID StateNewGame::Run()
 		
 		const uint8_t position = nameForm.getCharIndex();
 		const uint8_t spacing = (position * NameCharacterSpacing);
-		arduboy.drawLine(xOffset + spacing, yOffset + 9, xOffset + spacing + NameUnderlineWidth, yOffset + 9);
+		arduboy.drawFastHLine(xOffset + spacing, yOffset + 9, xOffset + spacing + NameUnderlineWidth);
 		
 		textbox.draw();
 	}
