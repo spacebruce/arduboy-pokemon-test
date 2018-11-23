@@ -15,4 +15,6 @@ enum class MonsterSpecies : uint8_t
 
 class Monster
 {
+public:
+	MonsterSpecies species = MonsterSpecies::None;
 };
