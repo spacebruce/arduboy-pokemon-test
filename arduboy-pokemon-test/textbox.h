@@ -3,26 +3,25 @@
 class Textbox : public Print
 {
 private:
-	constexpr static const uint8_t RowLength = 21;
-	constexpr static const uint8_t RowNumber = 2;
-	constexpr static const uint8_t CharMax = RowLength * RowNumber;
+	constexpr static const uint8_t RowLength = 20;
+	constexpr static const uint8_t RowCount  = 2;
+	constexpr static const uint8_t CharMax = RowLength * RowCount;
 	
 	bool active = false;
 	char text[CharMax];
 	uint8_t cursor = 0;
 	uint8_t reveal = 0;
 public:
-	bool busy() const
+	bool isActive() const
 	{
 		return active;
 	}
 	
 	void clear(void)
 	{
-		for(uint8_t i = 0; i < CharMax; ++i)
-			text[i] = ' ';
-		text[0] = '\0';
 		this->cursor = 0;
+		for(uint8_t i = 0; i < CharMax; ++i)
+			text[i] = '\0';
 	}
 	
 	size_t write(uint8_t letter) override
@@ -32,7 +31,7 @@ public:
 		
 		if(letter == '\n')
 		{
-			this->cursor  = (((this->cursor / RowLength) + 1) * RowLength) - 1;
+			this->cursor  = (((this->cursor / RowLength) + 1) * RowLength);
 		}
 		else
 		{
@@ -46,53 +45,44 @@ public:
 		
 		return 1;
 	}
-	
-	void draw(Arduboy2 & arduboy)
-	{
-		arduboy.fillRect(1, 44, 126, 20, BLACK);
-		arduboy.drawRect(1, 44, 126, 20, WHITE);
-		
-		const uint8_t xstart = 4;
-		uint8_t x = xstart;
-		uint8_t y = 46 - 8;
-		uint8_t i = 0;
-		for(uint8_t i = 0; i < this->reveal; ++i)
-		{			
-			if(text[i] == '\0')
-				break;
-			
-			if (i % (RowLength -1) == 0)
-			{
-				x = xstart;
-				y += 8;
-			}
-			if(text[i] != ' ')
-			{
-				arduboy.setCursor(x, y);
-				arduboy.print(text[i]);
-			}
-			x += 6;
-		}
-	}
 
-	void tick(Arduboy2 & arduboy)
+	void update(Arduboy2 & arduboy)
 	{
-		if(!this->active)
-			return;
-
 		if(this->reveal < this->cursor)
 		{
 			this->reveal++;
 		}
-		else
+		else if(arduboy.justPressed(A_BUTTON))
 		{
-			if(arduboy.justPressed(A_BUTTON))
+			this->active = false;
+			this->cursor = 0;
+		}
+	}
+
+	void draw(Arduboy2 & arduboy)
+	{
+		arduboy.fillRect(1, 44, (WIDTH - 2), 20, BLACK);
+		arduboy.drawRect(1, 44, (WIDTH - 2), 20, WHITE);
+		
+		constexpr uint8_t lineHeight = 8;
+
+		const uint8_t xStart = 4;
+		const uint8_t yStart = 46;
+
+		uint8_t index = 0;
+		for(uint8_t y = 0; y < RowCount; ++y)
+		{
+			arduboy.setCursor(xStart, yStart + y * lineHeight);
+
+			for(uint8_t x = 0; x < RowLength; ++x)
 			{
-				this->active = false;
-				this->cursor = 0;
+				if(index > reveal)
+					return;
+
+				arduboy.print(text[index]);
+
+				++index;
 			}
 		}
-
-		this->draw(arduboy);
 	}
 };
