@@ -73,14 +73,14 @@ void World::drawStuff()
 	{
 		if(npcVisible(i))
 		{
-			int16_t x = context.world.npcX[i];
-			int16_t y = context.world.npcY[i];
+			int16_t x = context.world.npcs[i].x;
+			int16_t y = context.world.npcs[i].y;
 			arduboy.fillRect(x + offsetX, y + offsetY, TileWidth, TileHeight, WHITE);
 		}
 	}
 	
 	//player
-	arduboy.fillRect(context.world.playerX + offsetX, context.world.playerY + offsetY, TileWidth, TileHeight, WHITE);
-	Sprites::drawOverwrite(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, 0);
+	arduboy.fillRect(context.world.player.x + offsetX, context.world.player.y + offsetY, TileWidth, TileHeight, WHITE);
+	Sprites::drawOverwrite(context.world.player.x + offsetX, context.world.player.y + offsetY, Sprite::Player, 0);
 	//arduboy.drawBitmap(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
 }

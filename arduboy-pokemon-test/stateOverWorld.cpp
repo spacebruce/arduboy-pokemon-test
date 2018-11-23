@@ -43,8 +43,8 @@ GameStateID StateOverWorld::Tick()
 		}
 		else
 		{
-			context.world.playerX += world.player.getMoveX();
-			context.world.playerY += world.player.getMoveY();
+			context.world.player.x += world.player.getMoveX();
+			context.world.player.y += world.player.getMoveY();
 		}
 	}
 	else
@@ -95,7 +95,7 @@ void StateOverWorld::Draw()
 {
 	arduboy.fillScreen(BLACK);
 	
-	world.setCamera((context.world.playerX + 8) - (WIDTH / 2), (context.world.playerY + 8) - (HEIGHT / 2));
+	world.setCamera((context.world.player.x + 8) - (WIDTH / 2), (context.world.player.y + 8) - (HEIGHT / 2));
 	
 	//draw world and stuff
 	world.drawWorld();
