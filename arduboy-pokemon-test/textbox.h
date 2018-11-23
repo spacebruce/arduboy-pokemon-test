@@ -31,7 +31,7 @@ public:
 		
 		if(letter == '\n')
 		{
-			this->cursor  = (((this->cursor / RowLength) + 1) * RowLength) - 1;
+			this->cursor  = (((this->cursor / RowLength) + 1) * RowLength);
 		}
 		else
 		{
