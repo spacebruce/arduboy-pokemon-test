@@ -19,10 +19,9 @@ public:
 	
 	void clear(void)
 	{
-		for(uint8_t i = 0; i < CharMax; ++i)
-			text[i] = ' ';
-		text[0] = '\0';
 		this->cursor = 0;
+		for(uint8_t i = 0; i < CharMax; ++i)
+			text[i] = '\0';
 	}
 	
 	size_t write(uint8_t letter) override
