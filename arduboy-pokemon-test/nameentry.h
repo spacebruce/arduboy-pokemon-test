@@ -49,25 +49,22 @@ public:
 		return Length;
 	}
 	
-	uint8_t getFirstChar(void) const
+	uint8_t getTrimmedBegin(void) const
 	{
-		for(uint8_t i = 0; i < Length; ++i)
-		{
-			if(this->getChar(i) != ' ')
+		for(uint8_t i = FirstIndex; i < Length; ++i)
+			if(name[i] != ' ')
 				return i;
-		}
+
 		return Length;
 	}
 	
-	uint8_t getLastChar(void) const
+	uint8_t getTrimmedEnd(void) const
 	{
-		uint8_t lastChar = 0;
-		for(uint8_t i = 0; i < Length; ++i)
-		{
-			if(this->getChar(i) != ' ')
-				lastChar = i;
-		}
-		return lastChar;
+		for(uint8_t i = Length; i > FirstIndex; --i)
+			if(name[i - 1] != ' ')
+				return i;
+
+		return FirstIndex;
 	}
 
 	uint8_t getCharIndex(void)
