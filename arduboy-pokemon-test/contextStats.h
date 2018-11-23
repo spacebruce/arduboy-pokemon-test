@@ -1,4 +1,5 @@
 #pragma once
+#include "monster.h"
 
 #define MONSTERNUM 6
 
@@ -11,5 +12,5 @@ public:
 	uint16_t playerMoney = 0;
 	
 	//monster data...
-	
+	Monster party[MONSTERNUM];
 };
