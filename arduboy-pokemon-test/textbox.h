@@ -45,7 +45,23 @@ public:
 		
 		return 1;
 	}
-	
+
+	void update(Arduboy2 & arduboy)
+	{
+		if(this->reveal < this->cursor)
+		{
+			this->reveal++;
+		}
+		else
+		{
+			if(arduboy.justPressed(A_BUTTON))
+			{
+				this->active = false;
+				this->cursor = 0;
+			}
+		}
+	}
+
 	void draw(Arduboy2 & arduboy)
 	{
 		arduboy.fillRect(1, 44, 126, 20, BLACK);
@@ -71,22 +87,6 @@ public:
 				arduboy.print(text[i]);
 			}
 			x += 6;
-		}
-	}
-
-	void update(Arduboy2 & arduboy)
-	{
-		if(this->reveal < this->cursor)
-		{
-			this->reveal++;
-		}
-		else
-		{
-			if(arduboy.justPressed(A_BUTTON))
-			{
-				this->active = false;
-				this->cursor = 0;
-			}
 		}
 	}
 };
