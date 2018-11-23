@@ -87,13 +87,8 @@ GameStateID StateNewGame::Run()
 			} break;
 			case 3:
 			{
-				char str[20] = "hello ";	//hacky, fix
-				for(auto i = 0; i < 8; ++i)
-				{
-					str[i + 6] = context.stats.playerName[i];
-				}
-				
-				textbox.print(str); 
+				textbox.print(F("Hello "));
+				textbox.print(context.stats.playerName);
 			} break;
 			case 4:
 			{
