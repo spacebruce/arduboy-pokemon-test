@@ -20,7 +20,7 @@ bool StateNewGame::tryAccept()
 			playerName[i] = '\0';
 	}
 
-	return (endIndex == 0);
+	return (endIndex != 0);
 }
 
 GameStateID StateNewGame::Run()
@@ -46,7 +46,7 @@ GameStateID StateNewGame::Run()
 		{
 			bool success = this->tryAccept();
 
-			if(success)
+			if(!success)
 				index -= 2;
 
 			nameinput = false;
