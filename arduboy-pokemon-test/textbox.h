@@ -76,7 +76,7 @@ public:
 
 			for(uint8_t x = 0; x < RowLength; ++x)
 			{
-				if(text[index] == '\0')
+				if((index > reveal) || (text[index] == '\0'))
 					return;
 
 				arduboy.print(text[index]);
