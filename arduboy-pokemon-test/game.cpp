@@ -48,12 +48,15 @@ void Game::Run()
 	
 	arduboy.pollButtons();
 	
-	if(!textbox.busy())
+	if(textbox.busy())
+	{
+		textbox.tick(arduboy);
+		textbox.draw(arduboy);
+	}
+	else
 	{
 		stateNext = state->Run();
 	}
-	
-	textbox.tick();
 	
 	arduboy.display();
 }

@@ -2,8 +2,7 @@
 
 class Textbox : public Print
 {
-private:	
-	Arduboy2 & arduboy;
+private:
 	constexpr static const uint8_t RowLength = 21;
 	constexpr static const uint8_t RowNumber = 2;
 	constexpr static const uint8_t CharMax = RowLength * RowNumber;
@@ -13,9 +12,7 @@ private:
 	uint8_t cursor = 0;
 	uint8_t reveal = 0;
 public:
-	Textbox(Arduboy2 & arduboy) : arduboy(arduboy) {}
-	
-	bool busy()
+	bool busy() const
 	{
 		return active;
 	}
@@ -50,7 +47,7 @@ public:
 		return 1;
 	}
 	
-	void draw()
+	void draw(Arduboy2 & arduboy)
 	{
 		arduboy.fillRect(1, 44, 126, 20, BLACK);
 		arduboy.drawRect(1, 44, 126, 20, WHITE);
@@ -77,12 +74,12 @@ public:
 			x += 6;
 		}
 	}
-	
-	void tick()
+
+	void tick(Arduboy2 & arduboy)
 	{
 		if(!this->active)
 			return;
-		
+
 		if(this->reveal < this->cursor)
 		{
 			this->reveal++;
@@ -95,7 +92,7 @@ public:
 				this->cursor = 0;
 			}
 		}
-		
-		this->draw();
+
+		this->draw(arduboy);
 	}
 };

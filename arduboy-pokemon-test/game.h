@@ -19,7 +19,7 @@ public:
 private:
 	Arduboy2 arduboy;
 	GameContext context;
-	Textbox textbox = Textbox(arduboy);
+	Textbox textbox;
 	
 	StateBase * state;
 	GameStateID stateCurrent = GameStateID::Null;
