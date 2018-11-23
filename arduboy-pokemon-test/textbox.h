@@ -52,13 +52,10 @@ public:
 		{
 			this->reveal++;
 		}
-		else
+		else if(arduboy.justPressed(A_BUTTON))
 		{
-			if(arduboy.justPressed(A_BUTTON))
-			{
-				this->active = false;
-				this->cursor = 0;
-			}
+			this->active = false;
+			this->cursor = 0;
 		}
 	}
 
