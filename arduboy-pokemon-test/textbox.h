@@ -92,7 +92,5 @@ public:
 				this->cursor = 0;
 			}
 		}
-
-		this->draw(arduboy);
 	}
 };
