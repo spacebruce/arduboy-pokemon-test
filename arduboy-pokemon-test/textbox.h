@@ -75,7 +75,7 @@ public:
 		}
 	}
 
-	void tick(Arduboy2 & arduboy)
+	void update(Arduboy2 & arduboy)
 	{
 		if(!this->active)
 			return;

@@ -50,7 +50,7 @@ void Game::Run()
 	
 	if(textbox.busy())
 	{
-		textbox.tick(arduboy);
+		textbox.update(arduboy);
 		textbox.draw(arduboy);
 	}
 	else
