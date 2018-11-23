@@ -2,6 +2,8 @@
 #include <avr/pgmspace.h>
 #include "utilities/FlashString.h"
 
+#include "stringscommon.h"
+
 enum class MenuReturn : uint8_t
 {
 	Null,
@@ -33,10 +35,6 @@ struct MenuItem
 	MenuReturn result;
 	constexpr MenuItem(FlashString string, MenuReturn result) : string(string), result(result)	{}
 };
-
-const PROGMEM char StringEmpty[] = "";
-const PROGMEM char StringYes[] = "Yes";
-const PROGMEM char StringNo[] = "No";
 
 //main menu
 const char StringMainMenuStart[] PROGMEM = "New Game";
