@@ -5,6 +5,24 @@ StateNewGame::StateNewGame(Arduboy2 & arduboy, Textbox & textbox, GameContext & 
 {
 }
 
+bool StateNewGame::tryAccept()
+{
+	uint8_t beginIndex = nameForm.getTrimmedBegin();
+	uint8_t endIndex = nameForm.getTrimmedEnd();
+
+	auto & playerName = context.stats.playerName;
+
+	for(uint8_t i = 0, j = beginIndex; i < ContextStats::nameLength; ++i, ++j)
+	{
+		if(j < endIndex)
+			playerName[i] = nameForm[j];
+		else
+			playerName[i] = '\0';
+	}
+
+	return (endIndex == 0);
+}
+
 GameStateID StateNewGame::Run()
 {
 	arduboy.fillScreen(BLACK);
@@ -26,22 +44,11 @@ GameStateID StateNewGame::Run()
 
 		if (arduboy.justPressed(A_BUTTON))
 		{
-			bool empty = true;
-			uint8_t i = 0;
-			for(uint8_t n = nameForm.getFirstChar(); n <= nameForm.getLastChar(); ++n)
-			{
-				char letter = nameForm.getChar(n);
-				if(letter != ' ')
-					empty = false;
-				context.stats.playerName[i] = letter;
-				++i;
-			}
-			context.stats.playerName[nameForm.getLastChar() + 1] = '\0';
-			
-			if(empty)
-			{
-				index -= 2;	//repeat last line
-			}
+			bool success = this->tryAccept();
+
+			if(success)
+				index -= 2;
+
 			nameinput = false;
 		}
 		

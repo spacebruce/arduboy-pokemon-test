@@ -20,6 +20,9 @@ private:
 	uint8_t letter = 0;
 	NameEditor<8> nameForm;
 	
+private:
+	bool tryAccept();
+
 public:
 	GameStateID Run();
 };
