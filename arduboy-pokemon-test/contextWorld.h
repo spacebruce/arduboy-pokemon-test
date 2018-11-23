@@ -1,5 +1,6 @@
 #pragma once
 
+#include "direction.h"
 #include "worldEnums.h"
 
 struct ContextWorld 
