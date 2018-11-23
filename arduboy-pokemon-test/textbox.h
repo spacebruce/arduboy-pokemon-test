@@ -64,26 +64,25 @@ public:
 		arduboy.fillRect(1, 44, (WIDTH - 2), 20, BLACK);
 		arduboy.drawRect(1, 44, (WIDTH - 2), 20, WHITE);
 		
-		const uint8_t xstart = 4;
-		uint8_t x = xstart;
-		uint8_t y = 46 - 8;
-		uint8_t i = 0;
-		for(uint8_t i = 0; i < this->reveal; ++i)
-		{			
-			if(text[i] == '\0')
-				break;
-			
-			if (i % (RowLength -1) == 0)
+		constexpr uint8_t lineHeight = 8;
+
+		const uint8_t xStart = 4;
+		const uint8_t yStart = 46;
+
+		uint8_t index = 0;
+		for(uint8_t y = 0; y < RowCount; ++y)
+		{
+			arduboy.setCursor(xStart, yStart + y * lineHeight);
+
+			for(uint8_t x = 0; x < RowLength; ++x)
 			{
-				x = xstart;
-				y += 8;
+				if(text[index] == '\0')
+					return;
+
+				arduboy.print(text[index]);
+
+				++index;
 			}
-			if(text[i] != ' ')
-			{
-				arduboy.setCursor(x, y);
-				arduboy.print(text[i]);
-			}
-			x += 6;
 		}
 	}
 };
