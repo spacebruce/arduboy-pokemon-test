@@ -61,8 +61,8 @@ public:
 
 	void draw(Arduboy2 & arduboy)
 	{
-		arduboy.fillRect(1, 44, 126, 20, BLACK);
-		arduboy.drawRect(1, 44, 126, 20, WHITE);
+		arduboy.fillRect(1, 44, (WIDTH - 2), 20, BLACK);
+		arduboy.drawRect(1, 44, (WIDTH - 2), 20, WHITE);
 		
 		const uint8_t xstart = 4;
 		uint8_t x = xstart;
