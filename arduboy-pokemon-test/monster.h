@@ -5,8 +5,9 @@
 #include "stringscommon.h"
 
 const PROGMEM char StringSpeciesNone[] = "missingno";
-const PROGMEM char StringSpeciesBike[] = "Aye-aye";
-const PROGMEM char StringSpeciesDumOctopus[] = "Octoface";
+const PROGMEM char StringSpeciesAyeAye[] = "Aye-aye";
+const PROGMEM char StringSpeciesOctoFace[] = "Octoface";
+
 enum class MonsterSpecies : uint8_t
 {
 	None,	
