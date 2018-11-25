@@ -13,6 +13,8 @@
 #include "menuDefines.h"
 #include "menu.h"
 
+#include "monsterMenu.h"
+
 class StateOverWorld : public StateBase
 {
 public:
@@ -23,6 +25,7 @@ private:
 	
 	Menu menu = Menu(PauseMenuItems);
 	World world = World(arduboy, context);
+	MonsterMenu monsterMenu = MonsterMenu(context.stats);
 	
 	GameStateID Tick();
 	void Draw();
