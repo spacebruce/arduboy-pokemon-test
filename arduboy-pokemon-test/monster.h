@@ -24,13 +24,13 @@ enum class MonsterSpecies : uint8_t
 };
 
 
+
 class Monster
 {
 public:
 	MonsterSpecies species = MonsterSpecies::None;
 	FlashString getSpeciesName()
 	{
-		return "missingno";
 		return asFlashString(pgm_read_ptr(&stringSpeciesName[static_cast<uint8_t>(species)]));
 	}
 };
