@@ -1,5 +1,6 @@
 #pragma once
 #include "utilities/stat.h"
+#include "utilities/FlashString.h"
 
 #include "stringscommon.h"
 
@@ -17,4 +18,8 @@ class Monster
 {
 public:
 	MonsterSpecies species = MonsterSpecies::None;
+	char * getSpeciesName()
+	{
+		return "missingno";
+	}
 };
