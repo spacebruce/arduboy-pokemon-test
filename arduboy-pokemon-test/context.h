@@ -5,6 +5,8 @@
 #include "contextWorld.h"
 #include "contextStats.h"
 
+#include "Monster.h"
+
 //all shared state lives in here
 
 class GameContext
@@ -58,5 +60,6 @@ public:
 	
 	void NewGame()
 	{
+		stats.Party.add(Monster());
 	}
 };
