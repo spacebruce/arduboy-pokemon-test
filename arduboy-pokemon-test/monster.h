@@ -23,12 +23,14 @@ enum class MonsterSpecies : uint8_t
 	Octoface,
 };
 
+
 class Monster
 {
 public:
 	MonsterSpecies species = MonsterSpecies::None;
-	char * getSpeciesName()
+	FlashString getSpeciesName()
 	{
 		return "missingno";
+		return asFlashString(pgm_read_ptr(&stringSpeciesName[static_cast<uint8_t>(species)]));
 	}
 };
