@@ -8,6 +8,14 @@ const PROGMEM char StringSpeciesNone[] = "missingno";
 const PROGMEM char StringSpeciesAyeAye[] = "Aye-aye";
 const PROGMEM char StringSpeciesOctoFace[] = "Octoface";
 
+//ensure this matches up with species enum!!!
+const PROGMEM FlashString stringSpeciesName[] = 
+{
+	asFlashString(StringSpeciesNone), 
+	asFlashString(StringSpeciesAyeAye), 
+	asFlashString(StringSpeciesOctoFace),
+};
+
 enum class MonsterSpecies : uint8_t
 {
 	None,	
