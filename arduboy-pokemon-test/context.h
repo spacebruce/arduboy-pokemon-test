@@ -55,4 +55,8 @@ public:
 		const auto statsAddress = reinterpret_cast<const ContextStats *>(StatsAddress);
 		eeprom_write_block(&stats, statsAddress, sizeof(ContextStats));
 	};
+	
+	void NewGame()
+	{
+	}
 };
