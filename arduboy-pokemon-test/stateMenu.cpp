@@ -36,6 +36,7 @@ GameStateID StateMenu::Run()
 			break;
 			case MenuReturn::MainNewGame:
 				state = GameStateID::NewGame;
+				context.NewGame();
 			break;
 		}
 	}
