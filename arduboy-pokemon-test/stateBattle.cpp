@@ -35,6 +35,8 @@ GameStateID StateBattle::BattleUI()
 {	
 	GameStateID state = GameStateID::Battle;
 	
+	if(monsterMenu.active)
+		return state;
 	
 	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
 	const uint8_t menuSize = menuCurrent->getEndIndex();
@@ -77,7 +79,7 @@ GameStateID StateBattle::BattleUI()
 				textbox.print(F("Not yet..."));
 			break;			
 			case MenuReturn::BattleMenuParty:
-				textbox.print(F("Not yet..."));
+				monsterMenu.active = true;
 			break;
 			case MenuReturn::BattleMenuBaggy:
 				textbox.print(F("Not yet..."));
@@ -97,6 +99,7 @@ GameStateID StateBattle::BattleUI()
 	
 	return(state);	//do this more gracefully...
 }
+
 void StateBattle::BattleUIDraw()
 {
 	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
@@ -122,17 +125,23 @@ void StateBattle::BattleUIDraw()
 		arduboy.print(menuCurrent->getString(i));
 	}
 	Sprites::drawOverwrite(menuX[select] - 6, menuY[select], Sprite::UIArrow, 0);
-	
-	return(GameStateID::Battle);	//do this more gracefully...
 }
 
 GameStateID StateBattle::Run()
 {
 	GameStateID state = GameStateID::Battle;
 	arduboy.fillScreen(WHITE);
+	
 	Draw();
 	
 	BattleUIDraw();
+	if(monsterMenu.active)
+	{
+		monsterMenu.update(arduboy);
+		monsterMenu.draw(arduboy);
+		return state;
+	}
+	
 	switch(phase)
 	{
 		case BattlePhase::Intro:
