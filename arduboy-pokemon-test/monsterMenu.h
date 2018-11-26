@@ -8,6 +8,7 @@
 class MonsterMenu
 {
 private:
+	Arduboy2 & arduboy;
 	ContextStats &stats;
 	
 	const uint8_t x = 4;
@@ -16,11 +17,11 @@ private:
 	const uint8_t height = 60;
 	
 public:
-	MonsterMenu(ContextStats & stats) : stats(stats) {};
+	MonsterMenu(Arduboy2 & arduboy, ContextStats & stats) : arduboy(arduboy), stats(stats) {};
 	
 	bool active = false;
 	
-	void update(Arduboy2 & arduboy)
+	void update()
 	{
 		if(arduboy.justPressed(A_BUTTON))
 		{
@@ -28,7 +29,7 @@ public:
 		}
 	}
 	
-	void draw(Arduboy2 & arduboy)
+	void draw()
 	{
 		arduboy.fillRect(x,y,width,height,BLACK);
 		arduboy.drawRect(x,y,width,height,WHITE);
