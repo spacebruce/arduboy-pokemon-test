@@ -15,6 +15,13 @@ GameStateID StateOverWorld::Run()
 GameStateID StateOverWorld::Tick()
 {
 	GameStateID state = GameStateID::OverWorld;
+	
+	if(monsterMenu.active)
+	{
+		monsterMenu.update(arduboy);
+		return state;
+	}
+	
 	if(!menuShow)
 	{		
 		if(world.player.ready())
@@ -68,6 +75,7 @@ GameStateID StateOverWorld::Tick()
 			switch(menu.getCurrentValue())
 			{
 				case MenuReturn::PauseMenuMonsters:
+					monsterMenu.active = true;
 				break;
 				case MenuReturn::PauseMenuPlayer:
 				break;
@@ -93,6 +101,12 @@ GameStateID StateOverWorld::Tick()
 
 void StateOverWorld::Draw()
 {
+	if(monsterMenu.active)
+	{
+		monsterMenu.draw(arduboy);
+		return;
+	}
+	
 	arduboy.fillScreen(BLACK);
 	
 	world.setCamera((context.world.player.x + 8) - (WIDTH / 2), (context.world.player.y + 8) - (HEIGHT / 2));
@@ -133,4 +147,6 @@ void StateOverWorld::Draw()
 			y += 8;
 		}
 	}
+	
+	
 }
