@@ -4,7 +4,7 @@
 
 #include "stringscommon.h"
 
-const PROGMEM char StringSpeciesNone[] = "missingno";
+const PROGMEM char StringSpeciesNone[] = "-";
 const PROGMEM char StringSpeciesAyeAye[] = "Aye-aye";
 const PROGMEM char StringSpeciesOctoFace[] = "Octoface";
 
