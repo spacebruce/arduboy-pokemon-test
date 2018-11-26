@@ -24,7 +24,7 @@ private:
 		Menu(BattleMenuRunItems),
 	};
 	
-	MonsterMenu monsterMenu = MonsterMenu(context.stats);
+	MonsterMenu monsterMenu = MonsterMenu(arduboy, context.stats);
 	
 	GameStateID BattleUI();
 	void BattleUIDraw();

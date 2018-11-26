@@ -25,7 +25,7 @@ private:
 	
 	Menu menu = Menu(PauseMenuItems);
 	World world = World(arduboy, context);
-	MonsterMenu monsterMenu = MonsterMenu(context.stats);
+	MonsterMenu monsterMenu = MonsterMenu(arduboy, context.stats);
 	
 	GameStateID Tick();
 	void Draw();

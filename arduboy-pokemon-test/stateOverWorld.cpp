@@ -18,7 +18,7 @@ GameStateID StateOverWorld::Tick()
 	
 	if(monsterMenu.active)
 	{
-		monsterMenu.update(arduboy);
+		monsterMenu.update();
 		return state;
 	}
 	
@@ -103,7 +103,7 @@ void StateOverWorld::Draw()
 {
 	if(monsterMenu.active)
 	{
-		monsterMenu.draw(arduboy);
+		monsterMenu.draw();
 		return;
 	}
 	

@@ -137,8 +137,8 @@ GameStateID StateBattle::Run()
 	BattleUIDraw();
 	if(monsterMenu.active)
 	{
-		monsterMenu.update(arduboy);
-		monsterMenu.draw(arduboy);
+		monsterMenu.update();
+		monsterMenu.draw();
 		return state;
 	}
 	
