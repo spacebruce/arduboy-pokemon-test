@@ -33,6 +33,9 @@ void StateBattle::Draw()
 
 GameStateID StateBattle::BattleUI()
 {	
+	GameStateID state = GameStateID::Battle;
+	
+	
 	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
 	const uint8_t menuSize = menuCurrent->getEndIndex();
 	
@@ -83,7 +86,7 @@ GameStateID StateBattle::BattleUI()
 				menuOn = BattleMenu::Run;
 			break;
 			case MenuReturn::Yes:	//run?
-				return(GameStateID::OverWorld);	//do this more gracefully...
+				state = GameStateID::OverWorld;	//do this more gracefully...
 			break;
 			case MenuReturn::No:
 				menuOn = BattleMenu::Action;
@@ -91,6 +94,14 @@ GameStateID StateBattle::BattleUI()
 		}
 		
 	}
+	
+	return(state);	//do this more gracefully...
+}
+void StateBattle::BattleUIDraw()
+{
+	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
+	const uint8_t menuSize = menuCurrent->getEndIndex();
+	const uint8_t select = menuCurrent->getSelectedIndex();
 	
 	//draw
 	arduboy.setCursor(0,0);
@@ -121,6 +132,7 @@ GameStateID StateBattle::Run()
 	arduboy.fillScreen(WHITE);
 	Draw();
 	
+	BattleUIDraw();
 	switch(phase)
 	{
 		case BattlePhase::Intro:

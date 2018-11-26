@@ -27,6 +27,7 @@ private:
 	MonsterMenu monsterMenu = MonsterMenu(context.stats);
 	
 	GameStateID BattleUI();
+	void BattleUIDraw();
 	
 	void DrawHealthBar(uint8_t percentage, uint8_t x, uint8_t y);
 	void Draw();
