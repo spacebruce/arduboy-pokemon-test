@@ -30,6 +30,21 @@ public:
 	
 	void draw(Arduboy2 & arduboy)
 	{
-		arduboy.drawRect(x,y,width,height,BLACK);
+		arduboy.fillRect(x,y,width,height,BLACK);
+		arduboy.drawRect(x,y,width,height,WHITE);
+		
+		uint8_t count = stats.Party.getCapacity();
+		arduboy.setCursor(0,0);
+		arduboy.print(count);
+		
+		uint8_t drawY = y;
+		for(uint8_t i = 0; i < count; ++i)
+		{
+			auto monster = &stats.Party[i];
+			arduboy.setCursor(x,drawY);
+			
+			arduboy.print(monster->getSpeciesName());
+			drawY += 8;
+		}
 	}
 };
