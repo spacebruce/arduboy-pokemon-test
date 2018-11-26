@@ -10,6 +10,8 @@
 #include "menu.h"
 #include "battleDefines.h"
 
+#include "monsterMenu.h"
+
 class StateBattle : public StateBase
 {
 private:
@@ -21,6 +23,8 @@ private:
 		Menu(BattleMenuFightItems),
 		Menu(BattleMenuRunItems),
 	};
+	
+	MonsterMenu monsterMenu = MonsterMenu(context.stats);
 	
 	GameStateID BattleUI();
 	
