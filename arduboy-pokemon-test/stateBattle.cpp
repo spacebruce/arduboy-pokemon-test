@@ -135,7 +135,16 @@ GameStateID StateBattle::Run()
 	
 	if(monsterMenu.getActive())
 	{
-		monsterMenu.update();
+		bool changed = monsterMenu.updateSwitchMonster();
+		if(changed)
+		{
+			uint8_t monsterNew = monsterMenu.getSelectedMonster();
+			if(monsterUsing != monsterNew)
+			{
+				monsterUsing = monsterNew;
+				//monster swap logic goes here
+			}
+		}
 		monsterMenu.draw();
 		return state;
 	}
