@@ -135,6 +135,10 @@ public:
 		}
 		return false;
 	}
+	
+	uint8_t getSelectedMonster()
+	{
+		return menu.getSelectedIndex();
 	}
 	
 	void draw()
