@@ -35,9 +35,6 @@ GameStateID StateBattle::BattleUI()
 {	
 	GameStateID state = GameStateID::Battle;
 	
-	if(monsterMenu.active)
-		return state;
-	
 	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
 	const uint8_t menuSize = menuCurrent->getEndIndex();
 	
@@ -79,7 +76,7 @@ GameStateID StateBattle::BattleUI()
 				textbox.print(F("Not yet..."));
 			break;			
 			case MenuReturn::BattleMenuParty:
-				monsterMenu.active = true;
+				monsterMenu.setActive(true);
 			break;
 			case MenuReturn::BattleMenuBaggy:
 				textbox.print(F("Not yet..."));
@@ -135,7 +132,8 @@ GameStateID StateBattle::Run()
 	Draw();
 	
 	BattleUIDraw();
-	if(monsterMenu.active)
+	
+	if(monsterMenu.getActive())
 	{
 		monsterMenu.update();
 		monsterMenu.draw();

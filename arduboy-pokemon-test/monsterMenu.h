@@ -57,11 +57,22 @@ private:
 		}
 	}
 	
+	bool active = false;
+	
 public:
 
 	MonsterMenu(Arduboy2 & arduboy, ContextStats & stats) : arduboy(arduboy), stats(stats) {};
 	
-	bool active = false;
+	bool getActive()
+	{
+		return this->active;
+	}
+	void setActive(bool active)
+	{
+		menu.selectFirstIndex();
+		this->active = active;
+	}
+	
 	
 	void update()
 	{		

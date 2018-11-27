@@ -16,7 +16,7 @@ GameStateID StateOverWorld::Tick()
 {
 	GameStateID state = GameStateID::OverWorld;
 	
-	if(monsterMenu.active)
+	if(monsterMenu.getActive())
 	{
 		monsterMenu.update();
 		return state;
@@ -75,7 +75,7 @@ GameStateID StateOverWorld::Tick()
 			switch(menu.getCurrentValue())
 			{
 				case MenuReturn::PauseMenuMonsters:
-					monsterMenu.active = true;
+					monsterMenu.setActive(true);
 				break;
 				case MenuReturn::PauseMenuPlayer:
 				break;
@@ -101,7 +101,7 @@ GameStateID StateOverWorld::Tick()
 
 void StateOverWorld::Draw()
 {
-	if(monsterMenu.active)
+	if(monsterMenu.getActive())
 	{
 		monsterMenu.draw();
 		return;
