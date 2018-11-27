@@ -58,7 +58,15 @@ public:
 	bool active = false;
 	
 	void update()
-	{
+	{		
+		if(arduboy.justPressed(UP_BUTTON))
+		{
+			menu.selectPreviousIndex();
+		}		
+		if(arduboy.justPressed(DOWN_BUTTON))
+		{
+			menu.selectNextIndex();
+		}
 		if(arduboy.justPressed(A_BUTTON))
 		{
 			this->active = false;
