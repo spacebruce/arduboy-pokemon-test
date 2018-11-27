@@ -83,19 +83,19 @@ public:
 		
 		if(arduboy.justPressed(UP_BUTTON))
 		{
-			do
+			//do
 			{
 				menu.selectPreviousIndex();
 			}
-			while(monsterEmpty(menu.getSelectedIndex()));
+			//while(monsterEmpty(menu.getSelectedIndex()));
 		}
 		if(arduboy.justPressed(DOWN_BUTTON))
 		{			
-			do
+			//do
 			{
 				menu.selectNextIndex();
 			}
-			while(monsterEmpty(menu.getSelectedIndex()));
+			//while(monsterEmpty(menu.getSelectedIndex()));
 		}			
 		if(arduboy.justPressed(B_BUTTON))
 		{
