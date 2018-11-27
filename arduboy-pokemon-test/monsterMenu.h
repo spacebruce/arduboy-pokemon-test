@@ -118,10 +118,23 @@ public:
 			this->active = false;
 		}
 	}
+	
+	bool updateSwitchMonster()
+	{
+		this->update();
+		
+		
 		if(arduboy.justPressed(A_BUTTON))
 		{
-			this->active = false;
+			uint8_t selected = menu.getSelectedIndex();
+			if(stats.Party[selected].species != MonsterSpecies::None)
+			{
+				this->active = false;
+				return true;
+			}
 		}
+		return false;
+	}
 	}
 	
 	void draw()
