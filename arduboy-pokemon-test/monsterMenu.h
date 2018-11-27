@@ -11,7 +11,7 @@ private:
 	Arduboy2 & arduboy;
 	ContextStats &stats;
 	
-	
+	Menu menu = Menu(MonsterMenuItems);
 	
 	const uint8_t menuX = 4;
 	const uint8_t menuY = 0;
