@@ -99,12 +99,25 @@ public:
 		
 		if(arduboy.justPressed(UP_BUTTON))
 		{
-			menu.selectPreviousIndex();
-		}		
-		if(arduboy.justPressed(DOWN_BUTTON))
-		{
-			menu.selectNextIndex();
+			do
+			{
+				menu.selectPreviousIndex();
+			}
+			while(monsterEmpty(menu.getSelectedIndex()));
 		}
+		if(arduboy.justPressed(DOWN_BUTTON))
+		{			
+			do
+			{
+				menu.selectNextIndex();
+			}
+			while(monsterEmpty(menu.getSelectedIndex()));
+		}			
+		if(arduboy.justPressed(B_BUTTON))
+		{
+			this->active = false;
+		}
+	}
 		if(arduboy.justPressed(A_BUTTON))
 		{
 			this->active = false;
