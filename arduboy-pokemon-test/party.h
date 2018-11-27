@@ -22,4 +22,8 @@ public:
 	uint8_t Count;
 	Monster store[6];	
 private:
+	bool monsterEmpty(uint8_t i)
+	{
+		return (store[i].species == MonsterSpecies::None);
+	}
 };
