@@ -34,21 +34,27 @@ private:
 	void drawSegment(uint8_t index, uint8_t y)
 	{
 		auto monster = &stats.Party[index];
+		const uint8_t startX = menuX + 4;
 		if(monster->species == MonsterSpecies::None)
 			return;
 		
 		//draw sprite in left 16x16 square
-		arduboy.drawLine(menuX + 1, y, menuX + 17, y + 16, WHITE);
+		arduboy.drawLine(startX + 1, y, startX + 16, y + 15, WHITE);
 		
-		arduboy.setCursor(menuX + 18,y);
+		arduboy.setCursor(startX + 17,y);
 		arduboy.print(monster->getSpeciesName());
 		arduboy.print(F(" lv 10"));
 		
 		//draw hp bar (share code with battle??)
-		DrawHealthBar(50, menuX + 18, y + 10);
+		DrawHealthBar(50, startX + 17, y + 10);
 		
 		//arduboy.setCursor(menuX + 18,y + 8);
 		
+		if(index == menu.getSelectedIndex())
+		{
+			//arduboy.drawLine(menuX + 2, y, menuX + 2, y + 16, WHITE);
+			arduboy.drawRect(menuX, y, menuWidth, 16, WHITE);
+		}
 	}
 	
 public:
