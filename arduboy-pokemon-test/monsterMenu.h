@@ -91,6 +91,12 @@ public:
 	
 	void update()
 	{		
+		if(noMonsters())
+		{
+			this->active = false;
+			return;
+		}
+		
 		if(arduboy.justPressed(UP_BUTTON))
 		{
 			menu.selectPreviousIndex();
