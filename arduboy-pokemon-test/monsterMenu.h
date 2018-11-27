@@ -73,6 +73,21 @@ public:
 		this->active = active;
 	}
 	
+	bool monsterEmpty(uint8_t i)
+	{
+		return (stats.Party[i].species == MonsterSpecies::None);
+	}
+	
+	bool noMonsters()
+	{
+		const uint8_t length = stats.Party.getCapacity();
+		for(uint8_t i = 0; i < length; ++i)
+		{
+			if(monsterEmpty(i))
+				return false;
+		}
+		return true;
+	}
 	
 	void update()
 	{		
