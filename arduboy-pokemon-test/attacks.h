@@ -36,8 +36,7 @@ public:
 const PROGMEM char attackTest1[] = "punch";
 const PROGMEM char attackTest2[] = "flambe";
 
-const PROGMEM AttackType Attacks[] = 
+const PROGMEM AttackData AttackDefines[] = 
 {
 	AttackType(asFlashString(attackTest1), ElementType::Normal, 10),
 	AttackType(asFlashString(attackTest2), ElementType::Fire, 15),
-};
