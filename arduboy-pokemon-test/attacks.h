@@ -48,3 +48,13 @@ enum class AttackEnum : uint8_t
 	Flambe,
 };
 
+class AttackType
+{
+public:
+	AttackEnum getElement()
+	{
+		return AttackDefines[static_cast<uint8_t>(type)].getType();
+	}
+private:
+	AttackEnum type;
+}
