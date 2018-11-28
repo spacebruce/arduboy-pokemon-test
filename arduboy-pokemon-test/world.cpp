@@ -28,10 +28,10 @@ void World::drawWorld()
 	const int16_t startY = max(0, cameraY);
 	
 	//visiblilty. Untidy but works
-	const int8_t tileLeft = startX / TileWidth;
-	const int8_t tileTop = startY / TileHeight;
-	const int8_t tileRight = min(ChunkWidth / TileWidth, min(((cameraX + WIDTH) / TileWidth) + 1, ((startX / TileWidth) + 2) + (WIDTH / TileWidth)));
-	const int8_t tileBottom = min(ChunkHeight / TileHeight, min(((cameraY + HEIGHT) / TileHeight) + 1, ((startY / TileHeight) + 2) + (HEIGHT / TileHeight)));
+	const uint8_t tileLeft = startX / TileWidth;
+	const uint8_t tileTop = startY / TileHeight;
+	const uint8_t tileRight = tileLeft + ((WIDTH / TileWidth) + 1);
+	const uint8_t tileBottom = tileTop + ((HEIGHT / TileHeight) + 1);
 	
 	int8_t dy = offsetY + (tileTop * TileHeight);
 	for(auto iy = tileTop; iy < tileBottom; ++iy)
