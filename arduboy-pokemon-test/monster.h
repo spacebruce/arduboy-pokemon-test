@@ -4,6 +4,8 @@
 
 #include "stringscommon.h"
 
+#include "attacks.h"
+
 const PROGMEM char StringSpeciesNone[] = "-";
 const PROGMEM char StringSpeciesAyeAye[] = "Aye-aye";
 const PROGMEM char StringSpeciesOctoFace[] = "Octoface";
@@ -23,12 +25,12 @@ enum class MonsterSpecies : uint8_t
 	Octoface,
 };
 
-
-
 class Monster
 {
 public:
 	MonsterSpecies species = MonsterSpecies::None;
+	
+	AttackType attacks[4];
 	
 	FlashString getSpeciesName()
 	{
