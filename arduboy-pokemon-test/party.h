@@ -6,8 +6,6 @@ template <uint8_t capacity>
 class Party
 {
 public:
-	Monster store[capacity];	
-	
 	uint8_t getCount()
 	{
 		return count;
@@ -56,5 +54,6 @@ public:
 	}
 	
 private:
+	Monster store[capacity];	
 	uint8_t count = 0;
 };
