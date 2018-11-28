@@ -53,8 +53,8 @@ void World::drawWorld()
 	
 	/*
 	arduboy.setCursor(0, 0);
-	arduboy.println(context.world.playerX);
-	arduboy.println(context.world.playerY);
+	arduboy.println(context.world.player.x);
+	arduboy.println(context.world.player.y);
 	arduboy.print(tileLeft);	arduboy.print(" x ");	arduboy.println(tileRight);
 	arduboy.print(tileTop);		arduboy.print(" y ");	arduboy.println(tileBottom);
 	*/
@@ -79,5 +79,5 @@ void World::drawStuff()
 	//player
 	arduboy.fillRect(context.world.player.x + offsetX, context.world.player.y + offsetY, TileWidth, TileHeight, WHITE);
 	Sprites::drawOverwrite(context.world.player.x + offsetX, context.world.player.y + offsetY, Sprite::Player, 0);
-	//arduboy.drawBitmap(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
+	//arduboy.drawBitmap(context.world.player.x + offsetX, context.world.player.y + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
 }
