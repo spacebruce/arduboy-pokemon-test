@@ -32,6 +32,9 @@ private:
 	Attack attacks[4];
 	
 public:
+	Monster(void) = default;
+	Monster(MonsterSpecies species) : species(species) {};
+
 	MonsterSpecies getSpecies()
 	{
 		return this->species;
@@ -42,4 +45,8 @@ public:
 		return asFlashString(pgm_read_ptr(&stringSpeciesName[static_cast<uint8_t>(species)]));
 	}
 	
+	Attack getAttack(uint8_t index)
+	{
+		return attacks[index];
+	}
 };
