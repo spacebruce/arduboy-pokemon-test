@@ -24,7 +24,7 @@ void StateBattle::Draw()
 	
 	//player hp bar
 	arduboy.setCursor(72, 29);
-	arduboy.print(context.stats.party[monsterUsing].getSpeciesName());
+	arduboy.print(context.stats.party[context.stats.party.getActive()].getSpeciesName());
 	DrawHealthBar(5, 72, 37);
 	
 	arduboy.fillRect(1, 44, 126, 20, BLACK);
@@ -139,10 +139,11 @@ GameStateID StateBattle::Run()
 		if(changed)
 		{
 			monsterMenu.setActive(false);
-			uint8_t monsterNew = monsterMenu.getSelectedMonster();
-			if(monsterUsing != monsterNew)
+			const uint8_t monsterOld = context.stats.party.getActive();
+			const uint8_t monsterNew = monsterMenu.getSelectedMonster();
+			if(monsterOld != monsterNew)
 			{
-				monsterUsing = monsterNew;
+				context.stats.party.setActive(monsterNew);
 				//monster swap logic goes here
 			}
 		}

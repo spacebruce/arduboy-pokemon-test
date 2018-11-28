@@ -26,8 +26,6 @@ private:
 	
 	MonsterMenu monsterMenu = MonsterMenu(arduboy, context.stats);
 	
-	uint8_t monsterUsing = 0;	//fix later
-	
 	GameStateID BattleUI();
 	void BattleUIDraw();
 	
