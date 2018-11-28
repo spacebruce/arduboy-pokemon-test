@@ -27,16 +27,19 @@ enum class MonsterSpecies : uint8_t
 
 class Monster
 {
-public:
-	MonsterSpecies species = MonsterSpecies::None;
-	
+private:
+	MonsterSpecies species = MonsterSpecies::None;	
 	Attack attacks[4];
+	
+public:
+	MonsterSpecies getSpecies()
+	{
+		return this->species;
+	}
 	
 	FlashString getSpeciesName()
 	{
 		return asFlashString(pgm_read_ptr(&stringSpeciesName[static_cast<uint8_t>(species)]));
 	}
 	
-	Monster(void) = default;
-	Monster(MonsterSpecies species) : species(species) {};
 };
