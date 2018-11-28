@@ -12,5 +12,5 @@ public:
 	uint16_t playerMoney = 0;
 	
 	//monster data...
-	Party party;
+	Party<6> party;
 };

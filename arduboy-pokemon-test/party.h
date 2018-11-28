@@ -2,6 +2,7 @@
 
 #include "monster.h"
 
+template<uint8_t capacity>
 class Party
 {
 public:
@@ -18,9 +19,8 @@ public:
 		*/
 	}
 	
-	uint8_t capacity = 6;
 	uint8_t count = 0;
-	Monster store[6];	
+	Monster store[capacity];	
 	
 	void add(const Monster &monster)
 	{
