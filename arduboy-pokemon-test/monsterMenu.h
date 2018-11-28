@@ -3,7 +3,7 @@
 
 #include "contextStats.h"
 #include "monster.h"
-#include "menu.h"
+//#include "menu.h"
 
 class MonsterMenu
 {
@@ -11,7 +11,9 @@ private:
 	Arduboy2 & arduboy;
 	ContextStats &stats;
 	
-	Menu menu = Menu(MonsterMenuItems);
+	bool active = false;
+
+	uint8_t selected = 0;
 	
 	const uint8_t menuX = 4;
 	const uint8_t menuY = 0;
@@ -33,7 +35,7 @@ private:
 	
 	void drawSegment(uint8_t index, uint8_t y)
 	{
-		auto monster = &stats.party.store[index];
+		auto monster = &stats.party[index];
 		const uint8_t startX = menuX + 4;
 		if(monster->species == MonsterSpecies::None)
 			return;
@@ -50,17 +52,15 @@ private:
 		
 		//arduboy.setCursor(menuX + 18,y + 8);
 		
-		if(index == menu.getSelectedIndex())
+		if(index == selected)
 		{
 			//arduboy.drawLine(menuX + 2, y, menuX + 2, y + 16, WHITE);
 			arduboy.drawRect(menuX, y, menuWidth, 16, WHITE);
 		}
 	}
 	
-	bool active = false;
 	
 public:
-
 	MonsterMenu(Arduboy2 & arduboy, ContextStats & stats) : arduboy(arduboy), stats(stats) {};
 	
 	bool getActive()
@@ -69,7 +69,7 @@ public:
 	}
 	void setActive(bool active)
 	{
-		menu.selectFirstIndex();
+		selected = 0;
 		this->active = active;
 	}
 	
@@ -83,19 +83,17 @@ public:
 		
 		if(arduboy.justPressed(UP_BUTTON))
 		{
-			//do
+			if(selected > 0)
 			{
-				menu.selectPreviousIndex();
+				--selected;
 			}
-			//while(monsterEmpty(menu.getSelectedIndex()));
 		}
 		if(arduboy.justPressed(DOWN_BUTTON))
 		{			
-			//do
+			if(selected < (stats.party.getCount() - 1))
 			{
-				menu.selectNextIndex();
+				++selected;
 			}
-			//while(monsterEmpty(menu.getSelectedIndex()));
 		}			
 		if(arduboy.justPressed(B_BUTTON))
 		{
@@ -106,23 +104,12 @@ public:
 	bool updateSwitchMonster()
 	{
 		this->update();
-		
-		
-		if(arduboy.justPressed(A_BUTTON))
-		{
-			uint8_t selected = menu.getSelectedIndex();
-			if(stats.party.store[selected].species != MonsterSpecies::None)
-			{
-				this->active = false;
-				return true;
-			}
-		}
-		return false;
+		return (arduboy.justPressed(A_BUTTON));
 	}
 	
 	uint8_t getSelectedMonster()
 	{
-		return menu.getSelectedIndex();
+		return selected;
 	}
 	
 	void draw()
