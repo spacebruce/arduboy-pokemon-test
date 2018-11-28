@@ -13,6 +13,7 @@ private:
 	
 	bool active = false;
 
+	int8_t scroll = 0;
 	uint8_t selected = 0;
 	
 	const uint8_t menuX = 4;
@@ -99,6 +100,12 @@ public:
 		{
 			this->active = false;
 		}
+		
+		int8_t absoluteY = (selected * heightSegment) + scroll;
+		if (absoluteY < 0)
+			scroll += 4;
+		if ((absoluteY + heightSegment) > menuHeight)
+			scroll -= 4;
 	}
 	
 	bool updateSwitchMonster()
@@ -114,11 +121,13 @@ public:
 	
 	void draw()
 	{
+		//arduboy.fillRect(menuX, menuY, menuWidth, menuHeight, BLACK);
 		arduboy.fillRect(menuX, menuY, menuWidth, menuHeight, BLACK);
-		arduboy.drawRect(menuX, menuY, menuWidth, menuHeight, WHITE);
+		arduboy.drawLine(menuX + menuWidth, menuY, menuX + menuWidth, menuHeight, WHITE);
+		arduboy.drawLine(menuX, menuY, menuX, menuHeight, WHITE);
 		
 		uint8_t count = stats.party.getCount();
-		uint8_t drawY = menuY + 1;
+		uint8_t drawY = menuY + scroll;
 		for(uint8_t i = 0; i < count; ++i)
 		{
 			drawSegment(i, drawY);
