@@ -17,5 +17,7 @@ protected:
 	}
 
 public:
+	virtual ~StateBase() = default;
+
 	virtual GameStateID Run() = 0;
 };
