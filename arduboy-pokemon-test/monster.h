@@ -29,7 +29,7 @@ class Monster
 {
 private:
 	MonsterSpecies species = MonsterSpecies::None;	
-	Attack attacks[4];
+	//Attack attacks[4];
 	
 public:
 	Monster(void) = default;
@@ -47,6 +47,7 @@ public:
 	
 	Attack getAttack(uint8_t index)
 	{
-		return attacks[index];
+		return Attack();
+		//return attacks[index];
 	}
 };
