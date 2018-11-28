@@ -35,6 +35,16 @@ enum class AttackID : uint8_t
 };
 
 class AttackType
+ElementType AttackGetElement(AttackID type)
+{
+	return static_cast<ElementType>(pgm_read_byte(&(AttackDefines[static_cast<uint8_t>(type)].element)));
+}
+		
+FlashString AttackGetName(AttackID type)
+{
+	return static_cast<FlashString>(pgm_read_byte(&(AttackDefines[static_cast<uint8_t>(type)].label)));
+}
+	
 {
 public:
 	AttackType();
