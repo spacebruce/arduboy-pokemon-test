@@ -24,7 +24,7 @@ void StateBattle::Draw()
 	
 	//player hp bar
 	arduboy.setCursor(72, 29);
-	arduboy.print(F("namehere1"));
+	arduboy.print(context.stats.party[context.stats.party.getActive()].getSpeciesName());
 	DrawHealthBar(5, 72, 37);
 	
 	arduboy.fillRect(1, 44, 126, 20, BLACK);
@@ -33,6 +33,8 @@ void StateBattle::Draw()
 
 GameStateID StateBattle::BattleUI()
 {	
+	GameStateID state = GameStateID::Battle;
+	
 	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
 	const uint8_t menuSize = menuCurrent->getEndIndex();
 	
@@ -74,7 +76,7 @@ GameStateID StateBattle::BattleUI()
 				textbox.print(F("Not yet..."));
 			break;			
 			case MenuReturn::BattleMenuParty:
-				textbox.print(F("Not yet..."));
+				monsterMenu.setActive(true);
 			break;
 			case MenuReturn::BattleMenuBaggy:
 				textbox.print(F("Not yet..."));
@@ -83,7 +85,7 @@ GameStateID StateBattle::BattleUI()
 				menuOn = BattleMenu::Run;
 			break;
 			case MenuReturn::Yes:	//run?
-				return(GameStateID::OverWorld);	//do this more gracefully...
+				state = GameStateID::OverWorld;	//do this more gracefully...
 			break;
 			case MenuReturn::No:
 				menuOn = BattleMenu::Action;
@@ -91,6 +93,15 @@ GameStateID StateBattle::BattleUI()
 		}
 		
 	}
+	
+	return(state);	//do this more gracefully...
+}
+
+void StateBattle::BattleUIDraw()
+{
+	auto menuCurrent = &menu[static_cast<uint8_t>(menuOn)];
+	const uint8_t menuSize = menuCurrent->getEndIndex();
+	const uint8_t select = menuCurrent->getSelectedIndex();
 	
 	//draw
 	arduboy.setCursor(0,0);
@@ -111,15 +122,34 @@ GameStateID StateBattle::BattleUI()
 		arduboy.print(menuCurrent->getString(i));
 	}
 	Sprites::drawOverwrite(menuX[select] - 6, menuY[select], Sprite::UIArrow, 0);
-	
-	return(GameStateID::Battle);	//do this more gracefully...
 }
 
 GameStateID StateBattle::Run()
 {
 	GameStateID state = GameStateID::Battle;
 	arduboy.fillScreen(WHITE);
+	
 	Draw();
+	
+	BattleUIDraw();
+	
+	if(monsterMenu.getActive())
+	{
+		bool changed = monsterMenu.updateSwitchMonster();
+		if(changed)
+		{
+			monsterMenu.setActive(false);
+			const uint8_t monsterOld = context.stats.party.getActive();
+			const uint8_t monsterNew = monsterMenu.getSelectedMonster();
+			if(monsterOld != monsterNew)
+			{
+				context.stats.party.setActive(monsterNew);
+				//monster swap logic goes here
+			}
+		}
+		monsterMenu.draw();
+		return state;
+	}
 	
 	switch(phase)
 	{

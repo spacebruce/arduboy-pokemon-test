@@ -1,11 +1,21 @@
 #pragma once
 #include "utilities/stat.h"
+#include "utilities/FlashString.h"
 
 #include "stringscommon.h"
 
-const PROGMEM char StringSpeciesNone[] = "missingno";
-const PROGMEM char StringSpeciesBike[] = "Aye-aye";
-const PROGMEM char StringSpeciesDumOctopus[] = "Octoface";
+const PROGMEM char StringSpeciesNone[] = "-";
+const PROGMEM char StringSpeciesAyeAye[] = "Aye-aye";
+const PROGMEM char StringSpeciesOctoFace[] = "Octoface";
+
+//ensure this matches up with species enum!!!
+const PROGMEM FlashString stringSpeciesName[] = 
+{
+	asFlashString(StringSpeciesNone), 
+	asFlashString(StringSpeciesAyeAye), 
+	asFlashString(StringSpeciesOctoFace),
+};
+
 enum class MonsterSpecies : uint8_t
 {
 	None,	
@@ -13,8 +23,18 @@ enum class MonsterSpecies : uint8_t
 	Octoface,
 };
 
+
+
 class Monster
 {
 public:
 	MonsterSpecies species = MonsterSpecies::None;
+	
+	FlashString getSpeciesName()
+	{
+		return asFlashString(pgm_read_ptr(&stringSpeciesName[static_cast<uint8_t>(species)]));
+	}
+	
+	Monster(void) = default;
+	Monster(MonsterSpecies species) : species(species) {};
 };

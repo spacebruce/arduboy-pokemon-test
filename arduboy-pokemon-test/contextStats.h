@@ -1,7 +1,7 @@
 #pragma once
-#include "monster.h"
+#include "utilities/List.h"
 
-#define MONSTERNUM 6
+#include "party.h"
 
 struct ContextStats
 {
@@ -12,5 +12,5 @@ public:
 	uint16_t playerMoney = 0;
 	
 	//monster data...
-	Monster party[MONSTERNUM];
+	Party<6> party;
 };

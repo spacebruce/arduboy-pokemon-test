@@ -18,6 +18,7 @@
 
 #include <stdint.h>
 
+#include "Utility.h"
 #include "TypeTraits.h"
 
 //

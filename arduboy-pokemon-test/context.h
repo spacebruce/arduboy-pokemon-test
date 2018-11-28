@@ -5,6 +5,8 @@
 #include "contextWorld.h"
 #include "contextStats.h"
 
+#include "Monster.h"
+
 //all shared state lives in here
 
 class GameContext
@@ -55,4 +57,10 @@ public:
 		const auto statsAddress = reinterpret_cast<const ContextStats *>(StatsAddress);
 		eeprom_write_block(&stats, statsAddress, sizeof(ContextStats));
 	};
+	
+	void NewGame()
+	{
+		stats.party.add(Monster(MonsterSpecies::AyeAye));
+		stats.party.add(Monster(MonsterSpecies::Octoface));
+	}
 };

@@ -27,6 +27,8 @@ enum class MenuReturn : uint8_t
 	BattleMenuBaggy,
 	BattleMenuRunny,
 	BattleMenuAttackSelect,
+	//MonsterMenu
+	MonsterSelect,
 };
 
 struct MenuItem
@@ -92,4 +94,15 @@ const MenuItem BattleMenuFightItems[] PROGMEM =
 	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
 	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
 	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
+};
+
+//monster menu
+const MenuItem MonsterMenuItems[] PROGMEM =
+{
+	MenuItem(asFlashString(StringEmpty), MenuReturn::MonsterSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::MonsterSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::MonsterSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::MonsterSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::MonsterSelect),
+	MenuItem(asFlashString(StringEmpty), MenuReturn::MonsterSelect),
 };

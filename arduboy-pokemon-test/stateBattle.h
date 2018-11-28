@@ -10,6 +10,8 @@
 #include "menu.h"
 #include "battleDefines.h"
 
+#include "monsterMenu.h"
+
 class StateBattle : public StateBase
 {
 private:
@@ -22,7 +24,10 @@ private:
 		Menu(BattleMenuRunItems),
 	};
 	
+	MonsterMenu monsterMenu = MonsterMenu(arduboy, context.stats);
+	
 	GameStateID BattleUI();
+	void BattleUIDraw();
 	
 	void DrawHealthBar(uint8_t percentage, uint8_t x, uint8_t y);
 	void Draw();
