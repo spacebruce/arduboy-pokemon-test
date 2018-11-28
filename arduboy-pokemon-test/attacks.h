@@ -12,7 +12,7 @@ enum class ElementType : uint8_t
 
 struct AttackData
 {
-	constexpr AttackData(FlashString name, ElementType element, int8_t(power) : name(name), element(element), power(power) {}
+	constexpr AttackData(FlashString name, ElementType element, int8_t power) : name(name), element(element), power(power) {}
 
 	FlashString name;
 	ElementType element;
