@@ -124,11 +124,8 @@ void StateBattle::BattleUIDraw()
 GameStateID StateBattle::Run()
 {
 	GameStateID state = GameStateID::Battle;
-	arduboy.fillScreen(WHITE);
 	
-	Draw();
-	
-	BattleUIDraw();
+
 	
 	if(monsterMenu.getActive())
 	{
@@ -146,6 +143,12 @@ GameStateID StateBattle::Run()
 		}
 		monsterMenu.draw();
 		return state;
+	}
+	else
+	{
+		arduboy.fillScreen(WHITE);	
+		Draw();
+		BattleUIDraw();
 	}
 	
 	switch(phase)
