@@ -8,8 +8,8 @@ class StateBase
 {
 protected:
 	Arduboy2 & arduboy;
-	GameContext & context;
 	Textbox & textbox;
+	GameContext & context;
 	
 	StateBase(Arduboy2 & arduboy, Textbox & textbox, GameContext & context)
 		: arduboy(arduboy), textbox(textbox), context(context)
