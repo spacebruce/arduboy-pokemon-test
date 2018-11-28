@@ -2,25 +2,21 @@
 
 #include "monster.h"
 
-template<uint8_t capacity>
+template <uint8_t capacity>
 class Party
 {
 public:
-	bool Empty()
+	bool empty()
 	{
 		return (count == 0);
-		/*
-		for(uint8_t i = 0; i < Capacity; ++i)
-		{
-			if(monsterEmpty(i))
-				return false;
-		}
-		return true;
-		*/
 	}
 	
 	uint8_t count = 0;
-	Monster store[capacity];	
+	bool full()
+	{
+		return (count == capacity);
+	}
+	
 	
 	void add(const Monster &monster)
 	{
@@ -29,10 +25,13 @@ public:
 		store[count] = monster;
 		++count;
 	}
-
-private:
-	bool monsterEmpty(uint8_t i)
+	
+	void remove(const uint8_t index)
 	{
-		return (store[i].species == MonsterSpecies::None);
+		for(uint8_t i = index; i < count; ++i)
+		{
+			store[i] = store[i + 1];
+		}
+		--count;
 	}
 };

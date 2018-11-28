@@ -75,7 +75,7 @@ public:
 	
 	void update()
 	{		
-		if(stats.party.Empty())
+		if(stats.party.empty())
 		{
 			this->active = false;
 			return;
