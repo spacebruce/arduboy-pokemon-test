@@ -90,6 +90,8 @@ GameStateID StateBattle::BattleUI()
 			case MenuReturn::No:
 				menuOn = BattleMenu::Action;
 			break;
+			default:
+			break;
 		}
 		
 	}
