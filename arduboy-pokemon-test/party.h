@@ -26,12 +26,12 @@ public:
 		return capacity;
 	}
 	
-	inline bool empty() const
+	bool empty() const
 	{
 		return (count == 0);
 	}
 	
-	inline bool full() const
+	bool full() const
 	{
 		return (count == capacity);
 	}
@@ -53,19 +53,30 @@ public:
 	
 	void remove(const uint8_t index)
 	{
+		--count;
 		for(uint8_t i = index; i < count; ++i)
 		{
 			store[i] = store[i + 1];
 		}
-		--count;
+		store[count].~Monster();
 	}
 
-	Monster & getMonster(const uint8_t index) const
+	Monster & getMonster(const uint8_t index)
+	{
+		return store[index];
+	}
+
+	const Monster & getMonster(const uint8_t index) const
 	{
 		return store[index];
 	}
 	
 	Monster & operator [] (const uint8_t index)
+	{
+		return store[index];
+	}
+	
+	const Monster & operator [] (const uint8_t index) const
 	{
 		return store[index];
 	}
