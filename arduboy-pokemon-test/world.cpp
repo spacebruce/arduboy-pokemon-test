@@ -8,9 +8,6 @@ void World::setCamera(const int16_t cameraX, const int16_t cameraY)
 
 TileType World::tileLookupSprite(uint8_t tx, uint8_t ty)
 {
-	uint8_t chunkx = tx / ChunkWidth;
-	uint8_t chunky = ty / ChunkHeight;
-
 	if((tx & 1) != 0)
 		return TileType::Blank;
 	else
@@ -31,15 +28,15 @@ void World::drawWorld()
 	const int16_t startY = max(0, cameraY);
 	
 	//visiblilty. Untidy but works
-	const int16_t tileLeft = startX / TileWidth;
-	const int16_t tileTop = startY / TileHeight;
-	const int16_t tileRight = min(ChunkWidth / TileWidth, min(((cameraX + WIDTH) / TileWidth) + 1, ((startX / TileWidth) + 2) + (WIDTH / TileWidth)));
-	const int16_t tileBottom = min(ChunkHeight / TileHeight, min(((cameraY + HEIGHT) / TileHeight) + 1, ((startY / TileHeight) + 2) + (HEIGHT / TileHeight)));
+	const uint8_t tileLeft = startX / TileWidth;
+	const uint8_t tileTop = startY / TileHeight;
+	const uint8_t tileRight = tileLeft + ((WIDTH / TileWidth) + 1);
+	const uint8_t tileBottom = tileTop + ((HEIGHT / TileHeight) + 1);
 	
-	int16_t dy = offsetY + (tileTop * TileHeight);
+	int8_t dy = offsetY + (tileTop * TileHeight);
 	for(auto iy = tileTop; iy < tileBottom; ++iy)
 	{
-		int16_t dx = offsetX + (tileLeft * TileWidth);
+		int8_t dx = offsetX + (tileLeft * TileWidth);
 		for(auto ix = tileLeft; ix < tileRight; ++ix)
 		{
 			auto tileType = tileLookupSprite(ix, iy);
@@ -56,8 +53,8 @@ void World::drawWorld()
 	
 	/*
 	arduboy.setCursor(0, 0);
-	arduboy.println(context.world.playerX);
-	arduboy.println(context.world.playerY);
+	arduboy.println(context.world.player.x);
+	arduboy.println(context.world.player.y);
 	arduboy.print(tileLeft);	arduboy.print(" x ");	arduboy.println(tileRight);
 	arduboy.print(tileTop);		arduboy.print(" y ");	arduboy.println(tileBottom);
 	*/
@@ -82,5 +79,5 @@ void World::drawStuff()
 	//player
 	arduboy.fillRect(context.world.player.x + offsetX, context.world.player.y + offsetY, TileWidth, TileHeight, WHITE);
 	Sprites::drawOverwrite(context.world.player.x + offsetX, context.world.player.y + offsetY, Sprite::Player, 0);
-	//arduboy.drawBitmap(context.world.playerX + offsetX, context.world.playerY + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
+	//arduboy.drawBitmap(context.world.player.x + offsetX, context.world.player.y + offsetY, Sprite::Player, TileWidth, TileHeight, BLACK);
 }
