@@ -71,7 +71,6 @@ GameStateID StateOverWorld::Tick()
 
 		if(arduboy.justPressed(A_BUTTON))
 		{
-			const uint8_t Selected = menu.getSelectedIndex();
 			switch(menu.getCurrentValue())
 			{
 				case MenuReturn::PauseMenuMonsters:
