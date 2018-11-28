@@ -138,7 +138,6 @@ GameStateID StateBattle::Run()
 		bool changed = monsterMenu.updateSwitchMonster();
 		if(changed)
 		{
-			monsterMenu.setActive(false);
 			const uint8_t monsterOld = context.stats.party.getActive();
 			const uint8_t monsterNew = monsterMenu.getSelectedMonster();
 			if(monsterOld != monsterNew)
@@ -146,6 +145,7 @@ GameStateID StateBattle::Run()
 				context.stats.party.setActive(monsterNew);
 				//monster swap logic goes here
 			}
+			monsterMenu.setActive(false);
 		}
 		monsterMenu.draw();
 		return state;
