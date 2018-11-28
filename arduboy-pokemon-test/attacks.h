@@ -28,7 +28,7 @@ const PROGMEM AttackData AttackDefines[] =
 	AttackData(asFlashString(attackTest2), ElementType::Fire, 15),
 };
 
-enum class AttackEnum : uint8_t 
+enum class AttackID : uint8_t 
 {
 	Punch,
 	Flambe,
