@@ -92,6 +92,8 @@ GameStateID StateOverWorld::Tick()
 				case MenuReturn::PauseMenuTestBattle:
 					state = GameStateID::Battle;
 				break;
+				default:
+				break;
 			}
 		}
 	}
