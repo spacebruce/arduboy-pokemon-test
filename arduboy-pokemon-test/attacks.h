@@ -34,33 +34,33 @@ enum class AttackID : uint8_t
 	Flambe,
 };
 
+/*
 ElementType AttackGetElement(AttackID type)
 {
-	return static_cast<ElementType>(pgm_read_byte(&(AttackDefines[static_cast<uint8_t>(type)].element)));
+	return static_cast<ElementType>(pgm_read_byte(&(AttackDefines[static_cast<uint8_t>(type)]).element));
 }
-		
+
 FlashString AttackGetName(AttackID type)
 {
-	return static_cast<FlashString>(pgm_read_byte(&(AttackDefines[static_cast<uint8_t>(type)].label)));
+	return asFlashString(pgm_read_ptr(&(AttackDefines[static_cast<uint8_t>(type)]).name));
 }
-	
+*/
 
 class Attack
 {
 public:
-	Attack();
+	Attack() = default;
 	Attack(AttackID type) : type(type) {};
 
 	ElementType getElement()
 	{
-		return AttackGetElement(type);
+		return static_cast<ElementType>(pgm_read_byte(&(AttackDefines[static_cast<uint8_t>(type)]).element));
 	}
 	
 	FlashString getName()
 	{
-		return AttackGetName(type);
+		return pgm_read_ptr(&(AttackDefines[static_cast<uint8_t>(type)]).name);
 	}
-	
 private:
 	AttackID type;
 };
