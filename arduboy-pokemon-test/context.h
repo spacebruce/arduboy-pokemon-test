@@ -48,13 +48,13 @@ public:
 	
 	void Save()
 	{
-		const auto magicNumberAddress = reinterpret_cast<const uint32_t *>(MagicNumberAddress);
+		const auto magicNumberAddress = reinterpret_cast<uint32_t *>(MagicNumberAddress);
 		eeprom_write_dword(magicNumberAddress, magicNumber);
 		
-		const auto worldAddress = reinterpret_cast<const ContextWorld *>(WorldAddress);
+		const auto worldAddress = reinterpret_cast<ContextWorld *>(WorldAddress);
 		eeprom_write_block(&world, worldAddress, sizeof(ContextWorld));
 
-		const auto statsAddress = reinterpret_cast<const ContextStats *>(StatsAddress);
+		const auto statsAddress = reinterpret_cast<ContextStats *>(StatsAddress);
 		eeprom_write_block(&stats, statsAddress, sizeof(ContextStats));
 	};
 	
