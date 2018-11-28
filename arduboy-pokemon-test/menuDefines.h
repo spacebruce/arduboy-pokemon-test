@@ -1,44 +1,14 @@
 #pragma once
+
 #include <avr/pgmspace.h>
 #include "utilities/FlashString.h"
 
 #include "stringscommon.h"
 
-enum class MenuReturn : uint8_t
-{
-	Null,
-	//Generic
-	Yes,
-	No,
-	//Main
-	MainNewGame,
-	MainLoadGame,
-	//Pause
-	PauseMenuMonsters,
-	PauseMenuPlayer,
-	PauseMenuItems,
-	PauseMenuMap,
-	PauseMenuSave,
-	PauseMenuOptions,
-	PauseMenuTestBattle,
-	//Battle
-	BattleMenuFight,
-	BattleMenuParty,
-	BattleMenuBaggy,
-	BattleMenuRunny,
-	BattleMenuAttackSelect,
-	//MonsterMenu
-	MonsterSelect,
-};
+#include "menuReturn.h"
+#include "menuItem.h"
 
-struct MenuItem
-{
-	FlashString string;
-	MenuReturn result;
-	constexpr MenuItem(FlashString string, MenuReturn result) : string(string), result(result)	{}
-};
-
-//main menu
+// Main menu
 const char StringMainMenuStart[] PROGMEM = "New Game";
 const char StringMainMenuLoad[] PROGMEM = "Load Game";
 
@@ -48,8 +18,8 @@ const MenuItem MainMenuItems[] PROGMEM =
 	MenuItem(asFlashString(StringMainMenuLoad), MenuReturn::MainLoadGame),
 };
 
-//pause menu
-const uint8_t PauseMenuPlayerIndex = 1;
+// Pause menu
+constexpr uint8_t PauseMenuPlayerIndex = 1;
 
 const char StringPauseMenuMonsters[] PROGMEM = "Monsters";
 const char StringPauseMenuItems[] PROGMEM = "Bag";
@@ -69,7 +39,7 @@ const MenuItem PauseMenuItems[] PROGMEM =
 	MenuItem(asFlashString(StringPauseMenuTestBattle), MenuReturn::PauseMenuTestBattle),
 };
 
-//battle menu
+// Battle menu
 const PROGMEM char StringBattleMenuFight[] = "Fight";	
 const PROGMEM char StringBattleMenuParty[] = "Party";
 const PROGMEM char StringBattleMenuItems[] = "Bag";
@@ -96,7 +66,7 @@ const MenuItem BattleMenuFightItems[] PROGMEM =
 	MenuItem(asFlashString(StringEmpty), MenuReturn::BattleMenuAttackSelect),
 };
 
-//monster menu
+// Monster menu
 const MenuItem MonsterMenuItems[] PROGMEM =
 {
 	MenuItem(asFlashString(StringEmpty), MenuReturn::MonsterSelect),
