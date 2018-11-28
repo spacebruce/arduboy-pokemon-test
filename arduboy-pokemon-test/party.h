@@ -36,6 +36,13 @@ public:
 		return (count == capacity);
 	}
 	
+	void swap(const uint8_t left, const uint8_t right)
+	{
+		Monster temp = left;
+		left = right;
+		left = temp;
+	}
+	
 	void add(const Monster &monster)
 	{
 		if(count >= capacity)
