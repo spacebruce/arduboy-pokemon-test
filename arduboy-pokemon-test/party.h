@@ -45,7 +45,7 @@ public:
 	
 	void add(const Monster &monster)
 	{
-		if(count < capacity)
+		if(count >= capacity)
 			return;
 		store[count] = monster;
 		++count;
