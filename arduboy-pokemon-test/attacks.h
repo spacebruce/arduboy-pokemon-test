@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utilities/progmem.h"
+
 enum class ElementType : uint8_t
 {
 	Normal,
@@ -13,14 +15,8 @@ class AttackData
 private:
 	FlashString label;	//label rather than name because name is a reserved arduino thing
 	ElementType element;
-	int8_t power;
 public:
-	constexpr AttackType(FlashString string, ElementType element, int8_t power) : label(string), element(element), power(power) {}
-	
-	int8_t getPower()
-	{
-		return this->power;
-	}
+	constexpr AttackData(FlashString string, ElementType element, int8_t power) : label(string), element(element), power(power) {}
 	
 	ElementType getElement()
 	{
@@ -38,8 +34,8 @@ const PROGMEM char attackTest2[] = "flambe";
 
 const PROGMEM AttackData AttackDefines[] = 
 {
-	AttackType(asFlashString(attackTest1), ElementType::Normal, 10),
-	AttackType(asFlashString(attackTest2), ElementType::Fire, 15),
+	AttackData(asFlashString(attackTest1), ElementType::Normal, 10),
+	AttackData(asFlashString(attackTest2), ElementType::Fire, 15),
 };
 
 enum class AttackEnum : uint8_t 
@@ -51,10 +47,18 @@ enum class AttackEnum : uint8_t
 class AttackType
 {
 public:
-	AttackEnum getElement()
+	AttackType();
+	AttackType(AttackEnum type) : type(type) {};
+
+	ElementType getElement()
 	{
-		return AttackDefines[static_cast<uint8_t>(type)].getType();
+		return pgm_read_pointer(&AttackDefines[static_cast<uint8_t>(type)])->getElement();
 	}
+	FlashString getName()
+	{
+		return pgm_read_pointer(&AttackDefines[static_cast<uint8_t>(type)])->getName();
+	}
+	
 private:
 	AttackEnum type;
-}
+};
