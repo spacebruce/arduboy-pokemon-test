@@ -103,10 +103,7 @@ void StateBattle::BattleUIDraw()
 	const uint8_t menuSize = menuCurrent->getEndIndex();
 	const uint8_t select = menuCurrent->getSelectedIndex();
 	
-	//draw
-	arduboy.setCursor(0,0);
-	arduboy.print(static_cast<uint8_t>(menuOn));
-	
+	//draw	
 	const uint8_t xstart = 4;
 	const uint8_t ystart = 46;
 	
