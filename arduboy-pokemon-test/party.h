@@ -6,17 +6,17 @@ template <uint8_t capacity>
 class Party
 {
 public:
-	uint8_t getActive()
+	uint8_t getActive() const
 	{
 		return this->selected;
 	}
 	
-	void setActive(uint8_t selected)
+	void setActive(const uint8_t selected)
 	{
 		this->selected = selected;
 	}
 
-	uint8_t getCount()
+	uint8_t getCount() const
 	{
 		return count;
 	}
@@ -26,12 +26,12 @@ public:
 		return capacity;
 	}
 	
-	inline bool empty()
+	inline bool empty() const
 	{
 		return (count == 0);
 	}
 	
-	inline bool full()
+	inline bool full() const
 	{
 		return (count == capacity);
 	}
@@ -60,7 +60,7 @@ public:
 		--count;
 	}
 
-	Monster & getMonster(const uint8_t index)
+	Monster & getMonster(const uint8_t index) const
 	{
 		return store[index];
 	}
