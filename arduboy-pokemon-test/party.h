@@ -53,11 +53,12 @@ public:
 	
 	void remove(const uint8_t index)
 	{
+		--count;
 		for(uint8_t i = index; i < count; ++i)
 		{
 			store[i] = store[i + 1];
 		}
-		--count;
+		store[count].~Monster();
 	}
 
 	Monster & getMonster(const uint8_t index)
