@@ -30,7 +30,7 @@ class Monster
 public:
 	MonsterSpecies species = MonsterSpecies::None;
 	
-	AttackType attacks[4];
+	Attack attacks[4];
 	
 	FlashString getSpeciesName()
 	{
