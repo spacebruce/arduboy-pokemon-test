@@ -25,6 +25,8 @@ void Game::StateChange(const GameStateID stateNext)
 		case GameStateID::Battle:
 			state = new StateBattle(arduboy, textbox,context);
 			break;
+		default:
+			break;
 	}
 	
 	stateCurrent = stateNext;

@@ -38,6 +38,8 @@ GameStateID StateMenu::Run()
 				state = GameStateID::NewGame;
 				context.NewGame();
 			break;
+			default:
+			break;
 		}
 	}
 	
