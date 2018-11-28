@@ -12,10 +12,25 @@ class AttackData
 {
 private:
 	FlashString label;	//label rather than name because name is a reserved arduino thing
-	ElementType type;
+	ElementType element;
 	int8_t power;
-	constexpr AttackType(FlashString string, ElementType type, int8_t power) : label(string), type(type), power(power) {}
 public:
+	constexpr AttackType(FlashString string, ElementType element, int8_t power) : label(string), element(element), power(power) {}
+	
+	int8_t getPower()
+	{
+		return this->power;
+	}
+	
+	ElementType getElement()
+	{
+		return this->element;
+	}
+	
+	FlashString getName()
+	{
+		return this->label;
+	}
 };
 
 const PROGMEM char attackTest1[] = "punch";
