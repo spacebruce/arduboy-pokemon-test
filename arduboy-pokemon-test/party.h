@@ -38,9 +38,9 @@ public:
 	
 	void swap(const uint8_t left, const uint8_t right)
 	{
-		Monster temp = left;
-		left = right;
-		left = temp;
+		Monster temp = store[left];
+		store[left] = store[right];
+		store[right] = temp;
 	}
 	
 	void add(const Monster &monster)
