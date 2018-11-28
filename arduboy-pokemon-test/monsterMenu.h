@@ -33,7 +33,7 @@ private:
 	
 	void drawSegment(uint8_t index, uint8_t y)
 	{
-		auto monster = &stats.Party[index];
+		auto monster = &stats.party.store[index];
 		const uint8_t startX = menuX + 4;
 		if(monster->species == MonsterSpecies::None)
 			return;
@@ -111,7 +111,7 @@ public:
 		if(arduboy.justPressed(A_BUTTON))
 		{
 			uint8_t selected = menu.getSelectedIndex();
-			if(stats.Party[selected].species != MonsterSpecies::None)
+			if(stats.party.store[selected].species != MonsterSpecies::None)
 			{
 				this->active = false;
 				return true;
@@ -130,7 +130,7 @@ public:
 		arduboy.fillRect(menuX, menuY, menuWidth, menuHeight, BLACK);
 		arduboy.drawRect(menuX, menuY, menuWidth, menuHeight, WHITE);
 		
-		uint8_t count = stats.Party.getCapacity();
+		uint8_t count = stats.party.count;
 		uint8_t drawY = menuY + 1;
 		for(uint8_t i = 0; i < count; ++i)
 		{

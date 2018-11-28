@@ -24,7 +24,7 @@ void StateBattle::Draw()
 	
 	//player hp bar
 	arduboy.setCursor(72, 29);
-	arduboy.print(context.stats.Party[monsterUsing].getSpeciesName());
+	arduboy.print(context.stats.party.store[monsterUsing].getSpeciesName());
 	DrawHealthBar(5, 72, 37);
 	
 	arduboy.fillRect(1, 44, 126, 20, BLACK);

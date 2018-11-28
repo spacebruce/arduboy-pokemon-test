@@ -60,7 +60,7 @@ public:
 	
 	void NewGame()
 	{
-		stats.Party.add(Monster(MonsterSpecies::AyeAye));
-		stats.Party.add(Monster(MonsterSpecies::Octoface));
+		stats.party.add(Monster(MonsterSpecies::AyeAye));
+		stats.party.add(Monster(MonsterSpecies::Octoface));
 	}
 };
