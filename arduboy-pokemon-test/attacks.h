@@ -53,11 +53,12 @@ public:
 
 	ElementType getElement()
 	{
-		return pgm_read_pointer(&AttackDefines[static_cast<uint8_t>(type)])->getElement();
+		return AttackGetElement(type);
 	}
+	
 	FlashString getName()
 	{
-		return pgm_read_pointer(&AttackDefines[static_cast<uint8_t>(type)])->getName();
+		return AttackGetName(type);
 	}
 	
 private:
