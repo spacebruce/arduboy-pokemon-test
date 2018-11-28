@@ -26,12 +26,12 @@ public:
 		return capacity;
 	}
 	
-	bool empty()
+	inline bool empty()
 	{
 		return (count == 0);
 	}
 	
-	bool full()
+	inline bool full()
 	{
 		return (count == capacity);
 	}
@@ -45,7 +45,7 @@ public:
 	
 	void add(const Monster &monster)
 	{
-		if(count >= capacity)
+		if(count < capacity)
 			return;
 		store[count] = monster;
 		++count;
