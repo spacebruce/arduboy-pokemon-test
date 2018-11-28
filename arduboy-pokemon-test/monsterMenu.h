@@ -130,7 +130,7 @@ public:
 		arduboy.fillRect(menuX, menuY, menuWidth, menuHeight, BLACK);
 		arduboy.drawRect(menuX, menuY, menuWidth, menuHeight, WHITE);
 		
-		uint8_t count = stats.party.count;
+		uint8_t count = stats.party.getCount();
 		uint8_t drawY = menuY + 1;
 		for(uint8_t i = 0; i < count; ++i)
 		{

@@ -6,17 +6,27 @@ template <uint8_t capacity>
 class Party
 {
 public:
+	Monster store[capacity];	
+	
+	uint8_t getCount()
+	{
+		return count;
+	}
+	
+	constexpr uint8_t getCapacity() const
+	{
+		return capacity;
+	}
+	
 	bool empty()
 	{
 		return (count == 0);
 	}
 	
-	uint8_t count = 0;
 	bool full()
 	{
 		return (count == capacity);
 	}
-	
 	
 	void add(const Monster &monster)
 	{
@@ -34,4 +44,7 @@ public:
 		}
 		--count;
 	}
+
+private:
+	uint8_t count = 0;
 };
