@@ -10,23 +10,13 @@ enum class ElementType : uint8_t
 	Grass,
 };
 
-class AttackData
+struct AttackData
 {
-private:
-	FlashString label;	//label rather than name because name is a reserved arduino thing
+	constexpr AttackData(FlashString name, ElementType element, int8_t(power) : name(name), element(element), power(power) {}
+
+	FlashString name;
 	ElementType element;
-public:
-	constexpr AttackData(FlashString string, ElementType element, int8_t power) : label(string), element(element), power(power) {}
-	
-	ElementType getElement()
-	{
-		return this->element;
-	}
-	
-	FlashString getName()
-	{
-		return this->label;
-	}
+	uint8_t power;
 };
 
 const PROGMEM char attackTest1[] = "punch";
