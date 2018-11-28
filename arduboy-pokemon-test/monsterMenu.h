@@ -37,7 +37,7 @@ private:
 	{
 		auto monster = &stats.party[index];
 		const uint8_t startX = menuX + 4;
-		if(monster->species == MonsterSpecies::None)
+		if(monster->getSpecies() == MonsterSpecies::None)
 			return;
 		
 		//draw sprite in left 16x16 square
