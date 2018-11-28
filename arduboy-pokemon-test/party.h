@@ -6,6 +6,16 @@ template <uint8_t capacity>
 class Party
 {
 public:
+	uint8_t getActive()
+	{
+		return this->selected;
+	}
+	
+	void setActive(uint8_t selected)
+	{
+		this->selected = selected;
+	}
+
 	uint8_t getCount()
 	{
 		return count;
@@ -56,4 +66,5 @@ public:
 private:
 	Monster store[capacity];	
 	uint8_t count = 0;
+	uint8_t selected = 0;
 };
