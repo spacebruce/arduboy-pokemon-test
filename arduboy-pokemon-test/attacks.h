@@ -40,3 +40,11 @@ const PROGMEM AttackData AttackDefines[] =
 {
 	AttackType(asFlashString(attackTest1), ElementType::Normal, 10),
 	AttackType(asFlashString(attackTest2), ElementType::Fire, 15),
+};
+
+enum class AttackEnum : uint8_t 
+{
+	Punch,
+	Flambe,
+};
+
