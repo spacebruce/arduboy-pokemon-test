@@ -45,6 +45,16 @@ public:
 		--count;
 	}
 
+	Monster & getMonster(const uint8_t index)
+	{
+		return store[index];
+	}
+	
+	Monster & operator [] (const uint8_t index)
+	{
+		return store[index];
+	}
+	
 private:
 	uint8_t count = 0;
 };
