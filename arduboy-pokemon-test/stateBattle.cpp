@@ -73,7 +73,7 @@ GameStateID StateBattle::BattleUI()
 		switch(menuCurrent->getCurrentValue())
 		{
 			case MenuReturn::BattleMenuFight:
-				textbox.print(F("Not yet..."));
+				menuOn = BattleMenu::Fight;
 			break;			
 			case MenuReturn::BattleMenuParty:
 				monsterMenu.setActive(true);
@@ -124,8 +124,6 @@ void StateBattle::BattleUIDraw()
 GameStateID StateBattle::Run()
 {
 	GameStateID state = GameStateID::Battle;
-	
-
 	
 	if(monsterMenu.getActive())
 	{
