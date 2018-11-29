@@ -1,6 +1,7 @@
 #pragma once
 
 #include "utilities/progmem.h"
+#include "stringscommon.h"
 
 enum class ElementType : uint8_t
 {
@@ -24,12 +25,14 @@ const PROGMEM char attackTest2[] = "flambe";
 
 const PROGMEM AttackData AttackDefines[] = 
 {
+	AttackData(asFlashString(StringEmpty), ElementType::Normal, 0),
 	AttackData(asFlashString(attackTest1), ElementType::Normal, 10),
 	AttackData(asFlashString(attackTest2), ElementType::Fire, 15),
 };
 
 enum class AttackID : uint8_t 
 {
+	None,
 	Punch,
 	Flambe,
 };
@@ -51,6 +54,11 @@ class Attack
 public:
 	Attack() = default;
 	Attack(AttackID type) : type(type) {};
+	
+	bool EmptyAttack()
+	{
+		return type == (AttackID::None);
+	}
 
 	ElementType getElement()
 	{
