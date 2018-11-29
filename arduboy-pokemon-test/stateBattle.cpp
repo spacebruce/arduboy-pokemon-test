@@ -144,12 +144,10 @@ GameStateID StateBattle::Run()
 		monsterMenu.draw();
 		return state;
 	}
-	else
-	{
-		arduboy.fillScreen(WHITE);	
-		Draw();
-		BattleUIDraw();
-	}
+	
+	arduboy.fillScreen(WHITE);	
+	Draw();
+	BattleUIDraw();
 	
 	switch(phase)
 	{
